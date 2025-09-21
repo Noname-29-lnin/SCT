@@ -4,9 +4,20 @@
 #include <iostream>
 #include <stdlib.h>
 
-#include "./docs/hum_sensor/DHT-sensor-library/DHT.h"
-#include "./docs/hum_sensor/DHT-sensor-library/DHT_U.h"
+extern "C"{
+    #include "sensor_unit/DHT11.h"
+}
 
-
+class HumData{
+    public:
+        HumSensor(int pin);
+        bool m_read();
+        float getHumidity() const;
+        std::string m_getName() const;
+    private:
+        int m_pin;
+        float m_humidity;
+        std::string m_name;
+}
 
 #endif 
