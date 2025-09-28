@@ -1,0 +1,9 @@
+\babel@toc {vietnamese}{}\relax 
+\contentsline {section}{\numberline {1}Giới thiệu tổng quan}{4}{section.1}%
+\contentsline {subsection}{\numberline {1.1}Lý do chọn đề tài}{4}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Phạm vi nghiên cứu}{4}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}Nhiệm vụ chính của nhóm}{5}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Phương pháp tiếp cận và công cụ sử dụng}{5}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Cấu trúc báo cáo đề tài}{6}{subsection.1.5}%
+\contentsline {section}{\numberline {2}Cơ sở lý thuyết}{7}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Tổng quan về công nghệ Bluetooth Low Energy (BLE)}{7}{subsection.2.1}%

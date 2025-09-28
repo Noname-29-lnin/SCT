@@ -1,0 +1,90 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{my-coverpage} % gọi file .sty bạn đã viết
+\usepackage[utf8]{inputenc}
+\usepackage[T5]{fontenc}
+\usepackage[vietnamese]{babel}
+
+
+\usepackage{array}
+\usepackage{setspace}
+\usepackage{indentfirst}
+\usepackage{enumerate}  % gói cơ bản, hỗ trợ đổi kiểu số thứ tự
+\usepackage{enumitem}   % gói mở rộng, chỉnh cấu hình linh hoạt
+
+\usepackage[
+unicode,            % hỗ trợ tiếng Việt trong bookmark
+bookmarks=true,     % bật bookmark
+bookmarksopen=true, % mở bookmark theo cây
+bookmarksnumbered=true, % thêm số chương/mục vào bookmark
+pdfborder={0 0 0},  % bỏ khung đỏ quanh link
+colorlinks=true,    % dùng màu thay vì khung
+linkcolor=black,     % màu link nội bộ
+citecolor=black,      % màu link trích dẫn
+urlcolor=magenta    % màu link URL
+]{hyperref}
+
+
+% =========================
+% Cấu hình thông tin
+% =========================
+\NameUpperUniname{Vietnam National University Ho Chi Minh City}
+\NameUniname{Ho Chi Minh City University of Technology}
+\NameDeptname{Department of Telecommunications Engineering}
+\NamePathlogo{./my-chapters/my-images/01_logobachkhoatoi.png}
+\NameSubject{Microwave Engineering}
+\NameGroup{04}
+\NameClass{L01}
+\NameLesson[\Large]{BIGPROJECT REPORT}
+\NameProject[\Huge]{Design of 2.4 GHz BLE Transmitter \\ with Wake-Up Receiver (WuRx)}
+\NameTitle[\Large]{Project 4: Sensor node BLE and Directional coupler}
+\NameAdvisor{Dr. NGUYEN Van Hieu}
+\NamePlace{Ho Chi Minh}
+\NameTime{../../20..}
+\NamePathBackground[width=\paperwidth,height=\paperheight]{./my-chapters/my-images/bia.jpg} 
+
+
+\begin{document}
+
+% In cover page
+\MycoverFinalProject
+\newpage
+\renewcommand{\arraystretch}{1.5} % tăng khoảng cách dòng (row height)
+\setlength{\parindent}{1cm}
+\onehalfspacing
+\setlength{\parskip}{6pt} 
+\begin{center}
+	{\normalsize\textbf{Bảng phân công nhiệm vụ}\\[0.5em]}
+	\begin{tabular}{|>{\centering\arraybackslash}m{1cm}
+			|>{\centering\arraybackslash}m{2.5cm}
+			|>{\centering\arraybackslash}m{4cm}
+			|>{\raggedright\arraybackslash}m{6cm}
+			|>{\centering\arraybackslash}m{2cm}|}
+		\hline
+		\textbf{STT} & \textbf{MSSV} & \textbf{Họ và Tên} & \textbf{Nhiệm vụ} & \textbf{Tiến độ} \\
+		\hline
+		1 & 2210214 & Lâm Gia Bảo & Viết chương 2: Lý thuyết về Directional Coupler & 100\% \\
+		\hline
+		2 & 2210278 & Trần Quốc Bảo & Viết lí thuyết SoC & 100\% \\
+		\hline
+		3 & 2210342 & Hà Xuân Cát & Viết chương 2: kiến trúc SoC & 100\% \\
+		\hline
+		4 & 2210631 & Lý Đoàn Dự & Tổng hợp và format, viết chương 1 & 100\% \\
+		\hline
+		5 & 2210725 & Võ Phát Đạt & Viết chương 2: Lý thuyết về Directional Coupler & 100\% \\
+		\hline
+		6 & 2210779 & Trương Nguyễn Nhật Đông & Nghiên cứu và viết mục lục & 100\% \\
+		\hline
+		7 & 2210780 & Nguyễn Đại Đồng & Viết chương 2: Tổng quan về BLE & 100\% \\
+		\hline
+		8 & 2210838 & Đỗ Tiến Giáp & Viết chương 2: Lý thuyết về Directional Coupler & 100\% \\
+		\hline
+	\end{tabular}
+\end{center}
+\newpage
+\fontsize{13}{14}\selectfont
+\tableofcontents
+\newpage
+\include{./my-chapters/overview.tex}
+\include{./my-chapters/theoretical_basic.tex}
+\end{document}

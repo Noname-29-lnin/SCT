@@ -1,0 +1,63 @@
+\fontsize{13}{14}\selectfont
+\section{Giới thiệu tổng quan}
+\subsection{Lý do chọn đề tài}
+
+Sự phát triển của Internet of Things (IoT) trong thập niên qua đã thúc đẩy nhu cầu về các thiết bị cảm biến không dây có kích thước nhỏ gọn, chi phí thấp, khả năng tiêu thụ năng lượng tối thiểu và tích hợp dễ dàng với hạ tầng mạng hiện hữu. Trong số các công nghệ truyền thông không dây hiện nay, Bluetooth Low Energy (BLE) nổi bật nhờ đặc tính tiêu thụ điện năng thấp, tốc độ truyền dữ liệu đáp ứng được yêu cầu của đa số ứng dụng IoT, đồng thời được hỗ trợ rộng rãi trên các thiết bị đầu cuối như điện thoại thông minh và máy tính bảng.
+
+Một thách thức lớn đối với các thiết bị BLE là duy trì tuổi thọ pin trong khi vẫn đảm bảo khả năng kết nối và phản hồi nhanh. Giải pháp kết hợp giữa BLE transmitter và Wake-Up Receiver (WuRx) đã được đề xuất nhằm tối ưu hóa năng lượng. WuRx đóng vai trò duy trì trạng thái tiêu thụ siêu thấp và chỉ kích hoạt bộ phát BLE khi có tín hiệu điều khiển, từ đó giảm đáng kể thời gian hoạt động không cần thiết và kéo dài vòng đời pin của thiết bị.
+
+Trên cơ sở đó, lớp được giao đề tài tổng quát “Thiết kế bộ phát BLE 2.4 GHz kết hợp với bộ Wake-Up Receiver (WuRx)”, nhằm xây dựng một hệ thống hoàn chỉnh bao gồm các khối chức năng từ phần cứng, phần mềm cho đến mạch RF thụ động phục vụ đo đạc và kiểm chứng.
+\subsection{Phạm vi nghiên cứu}
+Trong khuôn khổ đề tài chung, nhóm được phân công phụ trách hai nhiệm vụ chính:
+
+\begin{enumerate}[label=\arabic*)]
+	\item Thiết kế và chế tạo node BLE dựa trên chip ESP32-C3. Khác với cách tiếp cận sử dụng module thương mại đóng gói sẵn (ví dụ ESP32-C3-WROOM), nhóm tiến hành thiết kế trực tiếp từ chip ESP32-C3, bao gồm các thành phần ngoại vi tối thiểu như bộ nhớ flash ngoài, mạch dao động thạch anh, mạch nguồn ổn áp và mạng RF matching cho anten PCB. Node này đồng thời được tích hợp các cảm biến cơ bản (nhiệt độ, độ ẩm, ánh sáng), phục vụ cho việc thử nghiệm truyền dữ liệu BLE.
+	\item Thiết kế và chế tạo Directional Coupler dưới dạng vi dải coupled-line, với hai biến thể coupling ($-10dB$ và $-20dB$). Bộ coupler cho phép lấy mẫu tín hiệu trong quá trình phát BLE, từ đó hỗ trợ việc đo công suất, kiểm chứng tín hiệu và cung cấp dữ liệu RF phục vụ cho các nhóm khác trong hệ thống.
+\end{enumerate}
+
+Các nhiệm vụ trên vừa đảm bảo tính độc lập trong nghiên cứu, vừa đóng góp vào mục tiêu tổng thể của lớp, cụ thể là cung cấp một node BLE hoàn chỉnh và một bộ coupler RF cho hệ thống WuRx–BLE transmitter.
+
+\subsection{Nhiệm vụ chính của nhóm}
+
+\noindent Đề tài hướng đến việc đạt được các mục tiêu sau:
+
+\begin{enumerate}[label=\arabic*)]
+	\item Đối với Sensor Node ESP32-C3
+		\begin{itemize}[label=-]
+			\item Thiết kế schematic và layout PCB ở mức chip, bao gồm khối nguồn, ngoại vi, anten PCB và mạch matching.
+			\item Phát triển firmware BLE trên nền tảng ESP-IDF, hỗ trợ các chức năng advertising, notification và quản lý năng lượng (light sleep, deep sleep, duty cycling).
+			\item Đánh giá thực nghiệm về tiêu thụ năng lượng (dòng sleep/active), độ trễ wake-up (wake-up latency) và độ trễ vòng lặp đầu cuối (round-trip time).
+		\end{itemize}
+	\item Đối với Directional Coupler
+		\begin{itemize}[label=-]
+			\item Thiết kế, mô phỏng cấu trúc vi dải coupled-line với hệ số ghép $-10dB$ và $-20dB$.
+			\item Thực hiện layout PCB và chế tạo thực nghiệm.
+			\item Đo và phân tích các tham số S ($S_{11}$, $ S_{21} $, $ S_{31} $), isolation, phase và băng thông, từ đó so sánh với kết quả mô phỏng.
+		\end{itemize}
+\end{enumerate}
+
+\subsection{Phương pháp tiếp cận và công cụ sử dụng}
+
+\noindent Để đạt được các mục tiêu nêu trên, nhóm áp dụng phương pháp tiếp cận theo các bước sau:
+
+\begin{itemize}[label=-]
+	\item \textbf{Thiết kế phần cứng:} sử dụng KiCad/Altium cho schematic và PCB; tham chiếu hướng dẫn thiết kế phần cứng chính thức từ Espressif cho ESP32-C3 nhằm đảm bảo tính toàn vẹn tín hiệu và hiệu quả RF.
+	\item \textbf{Phát triển firmware:} xây dựng trên bộ công cụ ESP-IDF, ngôn ngữ C và FreeRTOS; triển khai quản lý năng lượng thông qua các chế độ sleep, lập trình wake-up từ GPIO.
+	\item \textbf{Mô phỏng RF:} sử dụng phần mềm chuyên dụng như CST Microwave Studio hoặc Keysight ADS để mô phỏng directional coupler, tối ưu chiều rộng và khoảng cách vi dải.
+	\item \textbf{Đo đạc thực nghiệm:} sử dụng Power Analyzer để đo dòng tiêu thụ, Oscilloscope để đo độ trễ wake-up, và Vector Network Analyzer (VNA) để đo tham số S của directional coupler.
+	\item \textbf{Tích hợp hệ thống:} phối hợp với các nhóm khác trong lớp nhằm kết nối node BLE và coupler với front-end RF và WuRx, từ đó kiểm chứng hiệu quả hoạt động của toàn hệ thống.
+\end{itemize}
+
+\subsection{Cấu trúc báo cáo đề tài}
+
+\noindent Báo cáo được cấu trúc thành sáu chương chính:
+
+\begin{enumerate}[label=Chương \arabic*:, leftmargin=2.5cm]
+	\item Giới thiệu tổng quan.
+	\item Cơ sở lý thuyết (ESP32-C3, BLE, quản lý năng lượng, directional coupler).
+	\item Thiết kế và thực hiện (node BLE từ chip ESP32-C3, firmware, directional coupler).
+	\item Kết quả đo đạc và phân tích (tiêu thụ năng lượng, Wake-up latency, RTT, tham số $ S $ của coupler).
+	\item Thảo luận và đánh giá.
+	\item Kết luận và hướng phát triển.
+\end{enumerate}
+

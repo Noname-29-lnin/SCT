@@ -1,0 +1,10 @@
+\fontsize{13}{14}\selectfont
+\section{Cơ sở lý thuyết}
+\subsection{Tổng quan về công nghệ Bluetooth Low Energy (BLE)}
+
+Bluetooth Low Energy (BLE) là một chuẩn truyền thông không dây trong băng tần ISM 2,4 GHz, được thiết kế cho các ứng dụng IoT tiêu thụ năng lượng thấp. Chuẩn này sử dụng 40 kênh RF, trong đó có 3 kênh quảng bá (advertising) và 37 kênh dữ liệu, với tốc độ truyền danh định 1 Mbps và khoảng cách hoạt động khoảng 10–50 m tùy điều kiện.
+
+Điểm khác biệt quan trọng giữa BLE và Bluetooth Classic là cơ chế tiết kiệm năng lượng. BLE chỉ phát gói tin ngắn trong quá trình quảng bá và duy trì trạng thái ngủ phần lớn thời gian, thay vì giữ kết nối liên tục. Điều này giúp thiết bị chạy bằng pin nhỏ có thể hoạt động trong nhiều tháng hoặc thậm chí nhiều năm.
+Kiến trúc giao thức BLE gồm hai phần: Controller (lớp vật lý và liên kết, xử lý kết nối ở mức thấp) và Host (các giao thức cao hơn như ATT, GATT, GAP và quản lý bảo mật). Giao diện giữa hai phần được chuẩn hóa thông qua Host Controller Interface (HCI), cho phép linh hoạt trong phát triển phần cứng và firmware.
+
+Trong hoạt động, thiết bị BLE có hai chế độ chính: advertising (phát gói tin để thông báo sự hiện diện, cho phép quét và thiết lập kết nối) và connection (trao đổi dữ liệu dựa trên profile GATT). Ngoài ra, thiết bị có thể ở trạng thái chờ (idle) hoặc deep-sleep, đảm bảo mức tiêu thụ dòng cực thấp.
