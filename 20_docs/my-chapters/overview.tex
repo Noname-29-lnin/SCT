@@ -1,23 +1,23 @@
 \section{Giới thiệu tổng quan}
-
-\subsection{Lý do chọn đề tài}
-Sự phát triển của Internet of Things (IoT) trong thập niên qua đã thúc đẩy nhu cầu về các thiết bị cảm biến không dây có kích thước nhỏ gọn, chi phí thấp, khả năng tiêu thụ năng lượng tối thiểu và tích hợp dễ dàng với hạ tầng mạng hiện hữu. Trong số các công nghệ truyền thông không dây hiện nay, Bluetooth Low Energy (BLE) nổi bật nhờ đặc tính tiêu thụ điện năng thấp, tốc độ truyền dữ liệu đáp ứng được yêu cầu của đa số ứng dụng IoT, đồng thời được hỗ trợ rộng rãi trên các thiết bị đầu cuối như điện thoại thông minh và máy tính bảng.
-
-Một thách thức lớn đối với các thiết bị BLE là duy trì tuổi thọ pin trong khi vẫn đảm bảo khả năng kết nối và phản hồi nhanh. Giải pháp kết hợp giữa BLE transmitter và Wake-Up Receiver (WuRx) đã được đề xuất nhằm tối ưu hóa năng lượng. WuRx đóng vai trò duy trì trạng thái tiêu thụ siêu thấp và chỉ kích hoạt bộ phát BLE khi có tín hiệu điều khiển, từ đó giảm đáng kể thời gian hoạt động không cần thiết và kéo dài vòng đời pin của thiết bị.
-
-Trên cơ sở đó, lớp được giao đề tài tổng quát “Thiết kế bộ phát BLE 2.4 GHz kết hợp với bộ Wake-Up Receiver (WuRx)”, nhằm xây dựng một hệ thống hoàn chỉnh bao gồm các khối chức năng từ phần cứng, phần mềm cho đến mạch RF thụ động phục vụ đo đạc và kiểm chứng.
-
-\subsection{Phạm vi nghiên cứu}
-
-Trong khuôn khổ đề tài chung, nhóm được phân công phụ trách hai nhiệm vụ chính:
-
-\begin{enumerate}[label=\arabic*)]
-	\item Thiết kế và chế tạo node BLE dựa trên chip ESP32-C3. Khác với cách tiếp cận sử dụng module thương mại đóng gói sẵn (ví dụ ESP32-C3-WROOM), nhóm tiến hành thiết kế trực tiếp từ chip ESP32-C3, bao gồm các thành phần ngoại vi tối thiểu như bộ nhớ flash ngoài, mạch dao động thạch anh, mạch nguồn ổn áp và mạng RF matching cho anten PCB. Node này đồng thời được tích hợp các cảm biến cơ bản (nhiệt độ, độ ẩm, ánh sáng), phục vụ cho việc thử nghiệm truyền dữ liệu BLE.
-	\item Thiết kế và chế tạo Directional Coupler dưới dạng vi dải coupled-line, với hai biến thể coupling ($-10dB$ và $-20dB$). Bộ coupler cho phép lấy mẫu tín hiệu trong quá trình phát BLE, từ đó hỗ trợ việc đo công suất, kiểm chứng tín hiệu và cung cấp dữ liệu RF phục vụ cho các nhóm khác trong hệ thống.
-\end{enumerate}
-
-Các nhiệm vụ trên vừa đảm bảo tính độc lập trong nghiên cứu, vừa đóng góp vào mục tiêu tổng thể của lớp, cụ thể là cung cấp một node BLE hoàn chỉnh và một bộ coupler RF cho hệ thống WuRx–BLE transmitter.
-
+%
+%\subsection{Lý do chọn đề tài}
+%Sự phát triển của Internet of Things (IoT) trong thập niên qua đã thúc đẩy nhu cầu về các thiết bị cảm biến không dây có kích thước nhỏ gọn, chi phí thấp, khả năng tiêu thụ năng lượng tối thiểu và tích hợp dễ dàng với hạ tầng mạng hiện hữu. Trong số các công nghệ truyền thông không dây hiện nay, Bluetooth Low Energy (BLE) nổi bật nhờ đặc tính tiêu thụ điện năng thấp, tốc độ truyền dữ liệu đáp ứng được yêu cầu của đa số ứng dụng IoT, đồng thời được hỗ trợ rộng rãi trên các thiết bị đầu cuối như điện thoại thông minh và máy tính bảng.
+%
+%Một thách thức lớn đối với các thiết bị BLE là duy trì tuổi thọ pin trong khi vẫn đảm bảo khả năng kết nối và phản hồi nhanh. Giải pháp kết hợp giữa BLE transmitter và Wake-Up Receiver (WuRx) đã được đề xuất nhằm tối ưu hóa năng lượng. WuRx đóng vai trò duy trì trạng thái tiêu thụ siêu thấp và chỉ kích hoạt bộ phát BLE khi có tín hiệu điều khiển, từ đó giảm đáng kể thời gian hoạt động không cần thiết và kéo dài vòng đời pin của thiết bị.
+%
+%Trên cơ sở đó, lớp được giao đề tài tổng quát “Thiết kế bộ phát BLE 2.4 GHz kết hợp với bộ Wake-Up Receiver (WuRx)”, nhằm xây dựng một hệ thống hoàn chỉnh bao gồm các khối chức năng từ phần cứng, phần mềm cho đến mạch RF thụ động phục vụ đo đạc và kiểm chứng.
+%
+%\subsection{Phạm vi nghiên cứu}
+%
+%Trong khuôn khổ đề tài chung, nhóm được phân công phụ trách hai nhiệm vụ chính:
+%
+%\begin{enumerate}[label=\arabic*)]
+%	\item Thiết kế và chế tạo node BLE dựa trên chip ESP32-C3. Khác với cách tiếp cận sử dụng module thương mại đóng gói sẵn (ví dụ ESP32-C3-WROOM), nhóm tiến hành thiết kế trực tiếp từ chip ESP32-C3, bao gồm các thành phần ngoại vi tối thiểu như bộ nhớ flash ngoài, mạch dao động thạch anh, mạch nguồn ổn áp và mạng RF matching cho anten PCB. Node này đồng thời được tích hợp các cảm biến cơ bản (nhiệt độ, độ ẩm, ánh sáng), phục vụ cho việc thử nghiệm truyền dữ liệu BLE.
+%	\item Thiết kế và chế tạo Directional Coupler dưới dạng vi dải coupled-line, với hai biến thể coupling ($-10dB$ và $-20dB$). Bộ coupler cho phép lấy mẫu tín hiệu trong quá trình phát BLE, từ đó hỗ trợ việc đo công suất, kiểm chứng tín hiệu và cung cấp dữ liệu RF phục vụ cho các nhóm khác trong hệ thống.
+%\end{enumerate}
+%
+%Các nhiệm vụ trên vừa đảm bảo tính độc lập trong nghiên cứu, vừa đóng góp vào mục tiêu tổng thể của lớp, cụ thể là cung cấp một node BLE hoàn chỉnh và một bộ coupler RF cho hệ thống WuRx–BLE transmitter.
+%
 \subsection{Nhiệm vụ của nhóm}
 
 \begin{enumerate}[label=\arabic*)]

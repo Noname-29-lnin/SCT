@@ -1,0 +1,53 @@
+\begin{thebibliography}{10}
+
+\bibitem{Afaneh2022BLEGuide}
+M.~Afaneh, ``Bluetooth low energy (ble): A complete guide,'' September 2022.
+\newblock Accessed: Oct. 6, 2025.
+
+\bibitem{Reyes2024BLEStack}
+E.~Reyes, M.~G. Legaspi, and E.~Peña, ``Understanding the architecture of the
+  bluetooth low energy stack,'' December 2024.
+\newblock Accessed: Oct. 6, 2025.
+
+\bibitem{Mischianti2024ESP32C3}
+R.~Mischianti, ``Esp32-c3: pinout, specs and arduino ide configuration,'' April
+  2024.
+\newblock Accessed: Oct. 6, 2025.
+
+\bibitem{Kindt2019Precise}
+P.~Kindt {\em et~al.}, ``Precise energy modeling for the bluetooth low energy
+  protocol,'' {\em IEEE Internet of Things Journal}, vol.~6, no.~2,
+  pp.~4005--4013, 2019.
+
+\bibitem{Siekkinen2013BLEvsZigBee}
+M.~Siekkinen {\em et~al.}, ``How low energy is bluetooth low energy?
+  comparative measurements with zigbee/802.15.4,'' {\em IEEE Wireless
+  Communications}, vol.~20, no.~6, pp.~39--45, 2013.
+
+\bibitem{Abdeddaim2020BLEAdvertising}
+N.~Abdeddaim {\em et~al.}, ``Energy optimization in ble advertising for iot
+  applications,'' {\em Sensors}, vol.~20, no.~7, 2020.
+
+\bibitem{Roundy2003Scavenging}
+S.~Roundy {\em et~al.}, ``Energy scavenging for wireless sensor networks,''
+  {\em Computer Communications}, vol.~26, pp.~1131--1144, 2003.
+
+\bibitem{Malik2020BLEZigBeeComparison}
+H.~Malik {\em et~al.}, ``Performance comparison of ble and zigbee for iot,''
+  {\em IEEE Access}, vol.~8, pp.~1139--1155, 2020.
+
+\bibitem{Gomez2019MeshAnalysis}
+A.~Gomez {\em et~al.}, ``Ble mesh networking: Performance analysis and power
+  consumption,'' {\em IEEE Communications Magazine}, vol.~57, no.~5,
+  pp.~107--113, 2019.
+
+\bibitem{Akyildiz2002SurveyWSN}
+I.~F. Akyildiz {\em et~al.}, ``A survey on sensor networks,'' {\em IEEE
+  Communications Magazine}, vol.~40, no.~8, pp.~102--114, 2002.
+
+\bibitem{Hauer2021BLEBatteryModeling}
+J.~H. Hauer {\em et~al.}, ``Energy consumption modeling of ble devices for
+  battery lifetime estimation,'' {\em IEEE Sensors Journal}, vol.~21, no.~15,
+  pp.~17123--17131, 2021.
+
+\end{thebibliography}

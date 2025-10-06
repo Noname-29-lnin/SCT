@@ -1,0 +1,61 @@
+This is BibTeX, Version 0.99d
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: main.aux
+Reallocating 'name_of_file' (item size: 1) to 27 items.
+A level-1 auxiliary file: ./my-chapters/overview.aux
+Reallocating 'name_of_file' (item size: 1) to 39 items.
+A level-1 auxiliary file: ./my-chapters/theorical_background.aux
+Reallocating 'name_of_file' (item size: 1) to 33 items.
+A level-1 auxiliary file: ./my-chapters/implementation.aux
+Reallocating 'name_of_file' (item size: 1) to 7 items.
+The style file: ieeetr.bst
+Reallocating 'name_of_file' (item size: 1) to 11 items.
+Database file #1: my-bib/ref.bib
+Warning--entry type for "Reyes2024BLEStack" isn't style-file defined
+--line 1 of file my-bib/ref.bib
+Warning--entry type for "Afaneh2022BLEGuide" isn't style-file defined
+--line 21 of file my-bib/ref.bib
+Warning--entry type for "Mischianti2024ESP32C3" isn't style-file defined
+--line 41 of file my-bib/ref.bib
+You've used 11 entries,
+            1876 wiz_defined-function locations,
+            562 strings with 5258 characters,
+and the built_in function-call counts, 3074 in all, are:
+= -- 338
+> -- 83
+< -- 0
++ -- 32
+- -- 21
+* -- 195
+:= -- 414
+add.period$ -- 14
+call.type$ -- 11
+change.case$ -- 11
+chr.to.int$ -- 0
+cite$ -- 11
+duplicate$ -- 148
+empty$ -- 294
+format.name$ -- 21
+if$ -- 765
+int.to.chr$ -- 0
+int.to.str$ -- 11
+missing$ -- 8
+newline$ -- 39
+num.names$ -- 11
+pop$ -- 32
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 127
+stack$ -- 0
+substring$ -- 256
+swap$ -- 72
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 32
+width$ -- 13
+write$ -- 114
+(There were 3 warnings)

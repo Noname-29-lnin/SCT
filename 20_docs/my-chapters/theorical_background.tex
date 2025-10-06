@@ -4,47 +4,114 @@
 
 Bluetooth Low Energy (BLE) là một chuẩn truyền thông không dây trong băng tần ISM $2.4 GHz$, được thiết kế cho các ứng dụng IoT tiêu thụ năng lượng thấp. Chuẩn này sử dụng 40 kênh RF, trong đó có 3 kênh quảng bá (advertising) và 37 kênh dữ liệu, với tốc độ truyền danh định 1 Mbps và khoảng cách hoạt động khoảng 10–50 m tùy điều kiện.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\linewidth]{./my-chapters/my-images/theoretical_background/BLE/BLE_number_channel.pdf}
+	\caption{BLE channels.}
+\end{figure}
+
+Các ưu điểm của BLE là:
+\begin{itemize}[label=-]
+	\item \textbf{Tiêu thụ điện năng thấp (Low Power Consumption):} \textbf{BLE} tiêu thụ ít điện năng hơn đáng kể so với \textbf{Bluetooth Classic}, khiến nó phù hợp cho các thiết bị chạy bằng pin yêu cầu thời lượng pin lâu dài.
+	
+	\item \textbf{Chi phí thấp hơn (Lower Cost):} Yêu cầu công suất thấp hơn của \textbf{BLE} thường dẫn đến chi phí thấp hơn để triển khai công nghệ này trong các thiết bị.
+	
+	\item \textbf{Kết nối được đơn giản hóa (Simplified Connectivity):} \textbf{BLE} đơn giản hóa quy trình khám phá thiết bị và thiết lập kết nối, giúp các thiết bị dễ dàng kết nối và giao tiếp với nhau hơn.
+	
+	\item \textbf{Thiết lập kết nối nhanh hơn (Faster Connection Establishment):} \textbf{BLE} thường thiết lập kết nối nhanh hơn \textbf{Bluetooth Classic}, từ đó giảm độ trễ trong truyền dữ liệu.
+	
+	\item \textbf{Khả năng tương thích với thiết bị di động (Compatibility with Mobile Devices):} \textbf{BLE} rất phù hợp để tích hợp với điện thoại thông minh và máy tính bảng, cho phép giao tiếp liền mạch giữa các thiết bị và ứng dụng di động.
+\end{itemize}
+
 Điểm khác biệt quan trọng giữa BLE và Bluetooth Classic là cơ chế tiết kiệm năng lượng. BLE chỉ phát gói tin ngắn trong quá trình quảng bá và duy trì trạng thái ngủ phần lớn thời gian, thay vì giữ kết nối liên tục. Điều này giúp thiết bị chạy bằng pin nhỏ có thể hoạt động trong nhiều tháng hoặc thậm chí nhiều năm.
 
 Kiến trúc giao thức BLE gồm hai phần: Controller (lớp vật lý và liên kết, xử lý kết nối ở mức thấp) và Host (các giao thức cao hơn như ATT, GATT, GAP và quản lý bảo mật). Giao diện giữa hai phần được chuẩn hóa thông qua Host Controller Interface (HCI), cho phép linh hoạt trong phát triển phần cứng và firmware.
 
 Trong hoạt động, thiết bị BLE có hai chế độ chính: advertising (phát gói tin để thông báo sự hiện diện, cho phép quét và thiết lập kết nối) và connection (trao đổi dữ liệu dựa trên profile GATT). Ngoài ra, thiết bị có thể ở trạng thái chờ (idle) hoặc deep-sleep, đảm bảo mức tiêu thụ dòng cực thấp.
-
-\subsubsection{BLE protocol stack and working modes}
-
-Controller (lowest layer of stack)
-
-Host (upper layer protocol and runs the following services)
-
 \subsubsection{BLE Beacons}
 
-\subsubsection{BLE Development Basics}
+Các Bluetooth beacons là những bộ phát nhỏ, không dây và sử dụng pin, hoạt động dựa trên BLE protocol để truyền dữ liệu. Điểm đặc biệt của beacons là chúng thường hoạt động theo một chiều, tức là chúng broadcast dữ liệu đến các thiết bị Bluetooth Low Energy ở gần, nhưng không nhận dữ liệu ngược lại. Các BLE beacons không cần internet connection để thực hiện việc broadcasting này\cite{Afaneh2022BLEGuide}.
 
-\noindent\textbf{Bluetooth LE Protocol Architecture}
+Thông thường, điều này có thể được hình dung như một beacon duy nhất broadcast dữ liệu đến các thiết bị thông minh ở gần như cell phones, smart watches, v.v.
+
+Hiện nay, smartphone support cho Bluetooth beacons vẫn còn hạn chế, vì vậy việc triển khai thực tế vẫn còn rất ít. Trong tương lai, chúng ta có thể sẽ thấy beacons được ứng dụng trong các lĩnh vực như proximity marketing, indoor navigation, và asset tracking trong logistics industry.
+
+\subsubsection{BLE protocol stack}
 
 Trong Bluetooth protocol stack được chia làm 3 thành phần chính hoặc là các phần tử của hệ thống như sau: \textbf{application}, \textbf{host} and \textbf{controller}. Bên trong mỗi lớp đó có các lớp riêng biệt khác trong đó.
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.6 \linewidth]{./my-chapters/my-images/theoretical_background/BLE/BLE_protocol_stack.png}
-	\caption{Bluetooth Radio in LE protocol stack.}
+	\includegraphics[width=.6 \linewidth]{./my-chapters/my-images/theoretical_background/BLE/BLE_protocol_stack.pdf}
+	\caption{Bluetooth LE stack architecture\cite{Reyes2024BLEStack}.}
 \end{figure}
 
-\noindent\textbf{BLE Protocol Layers}
+\begin{enumerate}[label=\arabic*)]
+	\item\textbf{Controller (lowest layer of stack)}
+
+Controller Layer gồm 2 lớp: 
+\begin{itemize}[label=-]
+	\item \textit{The Physical Layer (PHY): } là vị trí thấp nhất của BLE stack và chịu trách nhiệm cho việc truyền và nhận thực tế của tín hiệu từ không khí. Physical Layer hoạt động ở dải tần $2.4GHz$ ISM, và sử dụng Gaussian frequency shift keying (GFSK) để điều chế. Cơ chế sử GFSK giúp cho việc truyền dữ liệu hiệu quả bằng cách nhờ chuyển đổi tần số của tín hiệu sóng mang.
+	\item \textit{The Link Layer (LL): } là lớp chịu tránh nhiệm cho scanning, advertising, creating, và maintaining links hoặc quản lý kết nối giữa các thiết bị với nhau. Link Layer quản lý cách chọn tần số cho việc truyền dữ liệu, sử dụng phổ lan truyền tần số để giảm thiểu nhiễu. Link Layer có các trạng thái khác nhau như:
+	\begin{itemize}[label=-]
+		\item Standby: là trạng thái idle khi mà không có các gói nào được nhận hoặc truyền.
+		\item Advertising: là trạng thái truyền gói Advertising trong khi lắng nghe các thiết bị khác yêu cầu thêm thông tin.
+		\item Scanning: là trạng thái Link Layer (acting as a scanner) lắng nghe các gói Advertisers và có thể yêu cầu thêm thông tin từ chúng.
+		\item Initiating: là trạng thái Link Layer (acting as a initiator) lắng nghe các gói đến từ Advertiser và đáp lại các gói đó bằng cách bắt đầu kết nối.
+		\item Connection: là trạng thái mà Link Layer đã kết nối với các Link Layer của các thiết bị BLE khác.
+	\end{itemize}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.8\linewidth]{./my-chapters/my-images/theoretical_background/BLE/Linklayerstatetransitions.pdf}
+		\caption{Link layer state transitions\cite{Reyes2024BLEStack}.}
+	\end{figure}
+\end{itemize}
+
+\item\textbf{Host Controller Interface (HCI)}
+
+HCI Layer cung cấp một kết nối giữa hardware (PHY và LL) với các layer cao hơn. Nó cho phép host (e.g., a smartphone or computer) điều khiển Bluetooth hardware.
+
+\item\textbf{Host (upper layer protocol and runs the following services)}
+
+Host Layer là lớp chứa các lớp thấp hơn của BLE stack, bao gồm:
+\begin{itemize}[label=-]
+	\item \textit{Logical Link Control and Adaptation Protocol (L2CAP):} L2CAP nằm phía trên lớp HCI và xử lý phân đoạn gói và lắp ráp lại, cũng như các luồng dữ liệu ghép kênh.
+	
+	\item \textit{Security Manager Protocol (SMP):} Lớp này xử lý các khía cạnh bảo mật như ghép nối, mã hóa và xác thực giữa các thiết bị.
+	
+	\item \textit{Attribute Protocol (ATT):} ATT quản lý truyền dữ liệu và tổ chức trong các thiết bị Bluetooth LE. Nó chịu trách nhiệm đọc, viết và khám phá các thuộc tính (ví dụ: dịch vụ và đặc điểm) trên thiết bị.
+	
+	\item \textit{Generic Attribute Arofile (GATT):} GATT là một hồ sơ được xây dựng trên đầu ATT và xác định cách trao đổi dữ liệu bằng các thuộc tính.
+	
+	\item \textit{Generic Access Profile (GAP):} GAP xác định cách các thiết bị BLE tương tác ở cấp độ cơ bản, bao gồm khám phá thiết bị, thiết lập kết nối và quảng cáo.
+\end{itemize}
+
+
+\item\textbf{Application Layer}
+
+Application Layer là nơi thực hiện các chức năng đặc biệt của BLE-enable devices. Nó tương tác với các lớp thấp hơn trong stack thông qua Generic Attribute Profile (GATT), được sử dụng để định nghĩa các services (dịch vụ), characteristic (đặc tính), and the corresponding data (dữ liệu tương ứng).
+
+Tại Application Layer, các đặc tính và hành vi của thiết bị đã được thiết kế. Nó bao gồm các định nghĩa về services, characteristics, đặc biệt là các dữ liệu trao đổi với nhau, và thực hiện các logic cho xử lý các sự kiện như connections, disconnections, and data updates.Về bản chất, Application Layer tùy chỉnh các BLE stack cho các yêu cầu cụ thể của thiết bị với các trường hợp dự định của nó.
+\end{enumerate}
+
+\subsubsection{BLE working modes}
 
 \begin{enumerate}[label=\arabic*)]
-	\item The Physical Layer: được đề cập là một physical radio được sử dụng trong giao tiếp và cho việc modulation/demodulating dữ liệu. Nó được sử dụng trong các dải tần ISM ($2.4GHz$ spectrum).
-	\item The Link Layer: là lớp giao tiếp với Physical Layer (Radio) và cung cấp cho các lớp cao hơn 
+	\item \textbf{Master mode:} Module Bluetooth Low Energy của Feasycom hỗ trợ Master mode, cho phép tìm kiếm và kết nối các thiết bị Slave xung quanh. Ở chế độ này, module có thể gửi và nhận dữ liệu, đồng thời thiết lập địa chỉ MAC mặc định để tự động kết nối với Slave khi được cấp nguồn.
+	\item \textbf{Slave mode:} Trong chế độ này, Bluetooth module chỉ có thể bị phát hiện bởi thiết bị Master (không thể chủ động tìm kiếm). Sau khi kết nối, nó có thể truyền và nhận dữ liệu với host device.
+	\item \textbf{Broadcast mode:} Ở chế độ này, module thực hiện broadcast một-nhiều. Người dùng có thể cấu hình dữ liệu broadcast thông qua AT command, và module hoạt động ở chế độ tiêu thụ năng lượng thấp. Ứng dụng gồm: beacons, billboards, indoor positioning, asset tracking,... Ví dụ module: FSC-BT616, FSC-BT630 (Bluetooth 5.0); FSC-BT909 (Bluetooth 4.2).
+	\item \textbf{Mesh network mode:} Ở chế độ Mesh, nhiều module có thể liên kết thành mạng bằng star network hoặc relay technology, cho phép các mạng khác nhau kết nối với nhau. Cuối cùng, nhiều module Bluetooth có thể được quản lý và điều khiển qua smartphone hoặc tablet.
 \end{enumerate}
 
 \subsection{Kiến trúc và đặc điểm kỹ thuật của ESP32-C3}
 
 ESP32-C3 là vi mạch SoC do Espressif phát triển, tích hợp nhân xử lý RISC-V 32-bit, xung nhịp 160 MHz và bộ nhớ SRAM 400 KB. Điểm mạnh quan trọng của C3 là hỗ trợ Bluetooth Low Energy 5.0 cùng Wi-Fi $2.4 GHz$, cho phép lựa chọn linh hoạt giữa truyền tải cự ly ngắn, tiêu thụ năng lượng thấp và kết nối Internet dung lượng lớn.
 
-\begin{figure}[h]
+\begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\linewidth]{./my-chapters/my-images/theoretical_background/overview_block_diagram_for_esp32.png}
-	\caption{Sơ đồ khối của ESP32-C3.}
+	\caption{Sơ đồ khối cấu trúc tổng quan của ESP32-C3\cite{Mischianti2024ESP32C3}.}
 \end{figure}
 
 Trong bối cảnh đề tài, BLE 5.0 là thành phần trọng tâm, đảm bảo khả năng quảng bá, kết nối và truyền dữ liệu cảm biến với mức tiêu thụ năng lượng tối thiểu. ESP32-C3 cung cấp nhiều chế độ tiết kiệm năng lượng (light-sleep, deep-sleep), với dòng tiêu thụ trong deep-sleep chỉ vài µA, đáp ứng yêu cầu đo lường và tối ưu hóa năng lượng của hệ thống.
@@ -55,11 +122,49 @@ Về phần mềm, ESP32-C3 được hỗ trợ bởi ESP-IDF, cung cấp sẵn 
 
 \subsection{Quản lý năng lượng trong BLE node}
 
-Đối với node BLE sử dụng ESP32-C3, quản lý năng lượng là yếu tố quan trọng quyết định đến khả năng vận hành trong thời gian dài. Đặc thù của hệ thống là việc truyền dữ liệu cảm biến chỉ diễn ra theo chu kỳ hoặc khi có sự kiện đánh thức, trong khi phần lớn thời gian thiết bị ở trạng thái chờ (idle).
+%Đối với node BLE sử dụng ESP32-C3, quản lý năng lượng là yếu tố quan trọng quyết định đến khả năng vận hành trong thời gian dài. Đặc thù của hệ thống là việc truyền dữ liệu cảm biến chỉ diễn ra theo chu kỳ hoặc khi có sự kiện đánh thức, trong khi phần lớn thời gian thiết bị ở trạng thái chờ (idle).
+%
+%Cách tiếp cận phổ biến nhất để giảm tiêu thụ năng lượng là tổ chức các chế độ hoạt động của vi điều khiển và bộ thu phát RF theo mô hình duty cycle. Trong hầu hết thời gian, hệ thống ở trạng thái deep-sleep với mức dòng chỉ vài microampere; khi có sự kiện kích hoạt từ bộ đếm thời gian hoặc ngắt ngoài (GPIO wake-up), vi điều khiển thức dậy, khởi tạo kết nối BLE, truyền gói dữ liệu cần thiết, sau đó quay trở lại chế độ ngủ. Độ trễ từ thời điểm wake-up đến khi phát gói BLE đầu tiên là một tham số quan trọng phản ánh khả năng đáp ứng của hệ thống, đồng thời ảnh hưởng đến thiết kế firmware và cấu hình phần cứng.
+%
+%Ngoài việc lựa chọn chế độ ngủ phù hợp, thiết kế mạch nguồn cũng góp phần quyết định đến hiệu quả năng lượng. Việc sử dụng bộ ổn áp tuyến tính công suất thấp (LDO) cùng các tụ decoupling đúng cách giúp giảm nhiễu nguồn, đảm bảo hoạt động ổn định của RF trong khi vẫn duy trì mức tổn hao nhỏ. Đối với cảm biến tích hợp, việc lập chu trình lấy mẫu dữ liệu theo chu kỳ hợp lý cũng giúp cân bằng giữa mức tiêu thụ và độ chính xác của phép đo.
 
-Cách tiếp cận phổ biến nhất để giảm tiêu thụ năng lượng là tổ chức các chế độ hoạt động của vi điều khiển và bộ thu phát RF theo mô hình duty cycle. Trong hầu hết thời gian, hệ thống ở trạng thái deep-sleep với mức dòng chỉ vài microampere; khi có sự kiện kích hoạt từ bộ đếm thời gian hoặc ngắt ngoài (GPIO wake-up), vi điều khiển thức dậy, khởi tạo kết nối BLE, truyền gói dữ liệu cần thiết, sau đó quay trở lại chế độ ngủ. Độ trễ từ thời điểm wake-up đến khi phát gói BLE đầu tiên là một tham số quan trọng phản ánh khả năng đáp ứng của hệ thống, đồng thời ảnh hưởng đến thiết kế firmware và cấu hình phần cứng.
-
-Ngoài việc lựa chọn chế độ ngủ phù hợp, thiết kế mạch nguồn cũng góp phần quyết định đến hiệu quả năng lượng. Việc sử dụng bộ ổn áp tuyến tính công suất thấp (LDO) cùng các tụ decoupling đúng cách giúp giảm nhiễu nguồn, đảm bảo hoạt động ổn định của RF trong khi vẫn duy trì mức tổn hao nhỏ. Đối với cảm biến tích hợp, việc lập chu trình lấy mẫu dữ liệu theo chu kỳ hợp lý cũng giúp cân bằng giữa mức tiêu thụ và độ chính xác của phép đo.
+\begin{enumerate}[label=\arabic*)]
+	\item \textbf{Chiến lược tiết kiệm năng lượng:} BLE node có thể giảm đáng kể mức tiêu thụ điện thông qua:
+		\begin{itemize}[label=-]
+			\item Duty cycling và sleep modes: node chỉ hoạt động trong chu kỳ cần thiết, còn lại ở chế độ deep sleep hoặc standby để giảm dòng rò \cite{Kindt2019Precise}.
+			\item Adaptive transmission power control: điều chỉnh công suất phát dựa trên khoảng cách đến thiết bị nhận, nhằm tối ưu giữa độ tin cậy liên kết và tiêu thụ năng lượng \cite{Siekkinen2013BLEvsZigBee}.
+			\item Dynamic scheduling và advertising interval optimization: lựa chọn khoảng thời gian advertising interval phù hợp giúp cân bằng giữa khả năng phát hiện và thời lượng pin \cite{Abdeddaim2020BLEAdvertising}.
+		\end{itemize}
+	\item \textbf{Thu hoạch năng lượng (Energy Harvesting):} Các node BLE có thể được tích hợp các nguồn năng lượng tái tạo vi mô:
+		\begin{itemize}[label=-]
+			\item Từ môi trường: thu năng lượng từ ánh sáng, nhiệt điện hoặc rung động cơ học.
+			\item Mạch chuyển đổi hiệu quả: sử dụng DC-DC converter có hiệu suất cao giúp duy trì ổn định nguồn cấp.
+			\item Cân bằng năng lượng: thiết lập cơ chế điều phối giữa năng lượng thu được và tiêu thụ, đảm bảo node hoạt động liên tục \cite{Roundy2003Scavenging}.
+		\end{itemize}
+%	\item \textbf{Tối ưu hóa giao thức truyền thông:} 
+%		\begin{itemize}[label=-]
+%			\item So sánh BLE với các giao thức như ZigBee hay LoRaWAN cho thấy BLE có lợi thế ở mức năng lượng tiêu thụ trên mỗi bit thấp hơn trong phạm vi truyền ngắn \cite{Malik2020BLEZigBeeComparison}.
+%			\item Tối ưu gói tin và tần suất truyền: giảm kích thước payload và số lần truyền giúp kéo dài tuổi thọ pin.
+%			\item Trong BLE Mesh, cần phân tích ảnh hưởng của cơ chế flooding và relay đến mức tiêu thụ năng lượng tổng thể \cite{Gomez2019MeshAnalysis}.
+%		\end{itemize}
+%	\item \textbf{Quản lý năng lượng trong mạng cảm biến không dây (WSN):} 
+%		\begin{itemize}[label=-]
+%			\item Clustering và data aggregation: giảm tải số lượng gói tin cần gửi, tiết kiệm năng lượng tổng thể.
+%			\item Energy-aware routing: chọn đường truyền tối ưu dựa trên năng lượng còn lại của node.
+%			\item Phân tích năng lượng theo vai trò node (sensor, relay, gateway) giúp cân bằng tải năng lượng trong mạng \cite{Akyildiz2002SurveyWSN}.
+%		\end{itemize}
+	\item \textbf{Thiết kế phần cứng tiết kiệm năng lượng:} 
+		\begin{itemize}[label=-]
+			\item Tối ưu thiết kế PCB để giảm tổn hao điện, kết hợp low-dropout regulator (LDO) và low-leakage capacitors.
+			\item Cảm biến siêu tiết kiệm điện (như MEMS-based sensors) giúp giảm tiêu thụ nền.
+		\end{itemize}
+	\item \textbf{Phân tích và mô phỏng tiêu thụ năng lượng:} 
+		\begin{itemize}[label=-]
+			\item Mô hình hóa năng lượng theo trạng thái hoạt động (active, sleep, advertising, connection) cho phép ước tính chính xác thời gian hoạt động \cite{Hauer2021BLEBatteryModeling}.
+			\item Đo lường dòng điện sử dụng công cụ như Nordic Power Profiler Kit II để xác định chu kỳ năng lượng.
+			\item Tính toán giới hạn tốc độ truyền dữ liệu dựa trên dung lượng pin và hiệu suất mạch nguồn.
+		\end{itemize}
+\end{enumerate}
 
 \subsection{Lý thuyết về Directional Coupler}
 

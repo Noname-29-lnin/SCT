@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.10)  6 OCT 2025 08:21
+This is pdfTeX, Version 3.141592653-2.6-1.40.27 (MiKTeX 25.4) (preloaded format=pdflatex 2025.8.10)  6 OCT 2025 16:34
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1452,7 +1452,7 @@ Package caption Info: float package is loaded.
 Package caption Info: listings package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \c@lstlisting=\count413
-<./my-chapters/my-images/01_logobachkhoatoi.png, id=98, 471.9231pt x 478.9092pt
+<./my-chapters/my-images/01_logobachkhoatoi.png, id=93, 471.9231pt x 478.9092pt
 >
 File: ./my-chapters/my-images/01_logobachkhoatoi.png Graphic file (type png)
 <use ./my-chapters/my-images/01_logobachkhoatoi.png>
@@ -1472,7 +1472,7 @@ LaTeX Font Info:    Trying to load font information for U+msb on input line 28.
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 
-<./my-chapters/my-images/bia.jpg, id=100, 301.125pt x 414.95026pt>
+<./my-chapters/my-images/bia.jpg, id=95, 301.125pt x 414.95026pt>
 File: ./my-chapters/my-images/bia.jpg Graphic file (type jpg)
 <use ./my-chapters/my-images/bia.jpg>
 Package pdftex.def Info: ./my-chapters/my-images/bia.jpg  used on input line 29
@@ -1494,38 +1494,53 @@ LaTeX Font Info:    Calculating math sizes for size <13> on input line 3.
 [3]
 \openout2 = `./my-chapters/overview.aux'.
 
- (my-chapters/overview.tex
+ (my-chapters/overview.tex)
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.20 
-      [1
+l.68 	\include{./my-chapters/overview.tex}
+                                           [1
 
-])
+]
+\openout2 = `./my-chapters/theorical_background.aux'.
+
+
+(my-chapters/theorical_background.tex
+<./my-chapters/my-images/theoretical_background/BLE/BLE_number_channel.pdf, id=
+153, 514.92375pt x 216.05719pt>
+File: ./my-chapters/my-images/theoretical_background/BLE/BLE_number_channel.pdf
+ Graphic file (type pdf)
+<use ./my-chapters/my-images/theoretical_background/BLE/BLE_number_channel.pdf>
+
+Package pdftex.def Info: ./my-chapters/my-images/theoretical_background/BLE/BLE
+_number_channel.pdf  used on input line 9.
+(pdftex.def)             Requested size: 409.72125pt x 171.91957pt.
+
 
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.68 	\include{./my-chapters/overview.tex}
-                                           [2]
-\openout2 = `./my-chapters/theorical_background.aux'.
+l.24 \end{itemize}
+                   [2
 
 
-(my-chapters/theorical_background.tex
-<./my-chapters/my-images/theoretical_background/BLE/BLE_protocol_stack.png, id=
-165, 645.91313pt x 376.40625pt>
-File: ./my-chapters/my-images/theoretical_background/BLE/BLE_protocol_stack.png
- Graphic file (type png)
-<use ./my-chapters/my-images/theoretical_background/BLE/BLE_protocol_stack.png>
+
+ <./my-chapters/my-images/theoretical_background/BLE/BLE_number_channel.pdf, pa
+ge is rotated 90 degrees>]
+<./my-chapters/my-images/theoretical_background/BLE/BLE_protocol_stack.pdf, id=
+162, 523.20468pt x 361.35pt>
+File: ./my-chapters/my-images/theoretical_background/BLE/BLE_protocol_stack.pdf
+ Graphic file (type pdf)
+<use ./my-chapters/my-images/theoretical_background/BLE/BLE_protocol_stack.pdf>
 
 Package pdftex.def Info: ./my-chapters/my-images/theoretical_background/BLE/BLE
-_protocol_stack.png  used on input line 29.
-(pdftex.def)             Requested size: 307.2929pt x 179.07625pt.
+_protocol_stack.pdf  used on input line 45.
+(pdftex.def)             Requested size: 307.2929pt x 212.23526pt.
 
 
 
@@ -1533,73 +1548,75 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.32 
-      [3
+l.48 
+      [3]
+<./my-chapters/my-images/theoretical_background/BLE/Linklayerstatetransitions.p
+df, id=172, 528.47438pt x 252.945pt>
+File: ./my-chapters/my-images/theoretical_background/BLE/Linklayerstatetransiti
+ons.pdf Graphic file (type pdf)
+<use ./my-chapters/my-images/theoretical_background/BLE/Linklayerstatetransitio
+ns.pdf>
+Package pdftex.def Info: ./my-chapters/my-images/theoretical_background/BLE/Lin
+klayerstatetransitions.pdf  used on input line 66.
+(pdftex.def)             Requested size: 409.72125pt x 196.10368pt.
 
 
+[4 <./my-chapters/my-images/theoretical_background/BLE/BLE_protocol_stack.pdf, 
+page is rotated 90 degrees>]
 
-]
+[5 <./my-chapters/my-images/theoretical_background/BLE/Linklayerstatetransition
+s.pdf>]
 <./my-chapters/my-images/theoretical_background/overview_block_diagram_for_esp3
-2.png, id=171, 291.33844pt x 280.79906pt>
+2.png, id=242, 974.64125pt x 1036.87375pt>
 File: ./my-chapters/my-images/theoretical_background/overview_block_diagram_for
 _esp32.png Graphic file (type png)
 <use ./my-chapters/my-images/theoretical_background/overview_block_diagram_for_
 esp32.png>
 Package pdftex.def Info: ./my-chapters/my-images/theoretical_background/overvie
-w_block_diagram_for_esp32.png  used on input line 46.
-(pdftex.def)             Requested size: 409.72125pt x 394.93268pt.
+w_block_diagram_for_esp32.png  used on input line 113.
+(pdftex.def)             Requested size: 409.72125pt x 435.87953pt.
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+[6]
 
-
-
-[4 <./my-chapters/my-images/theoretical_background/BLE/BLE_protocol_stack.png>]
-
-
-[5 <./my-chapters/my-images/theoretical_background/overview_block_diagram_for_e
+[7 <./my-chapters/my-images/theoretical_background/overview_block_diagram_for_e
 sp32.png>]
-<./my-chapters/my-images/theoretical_background/coupler_directional.png, id=190
+
+[8]
+<./my-chapters/my-images/theoretical_background/coupler_directional.png, id=281
 , 420.06938pt x 295.1025pt>
 File: ./my-chapters/my-images/theoretical_background/coupler_directional.png Gr
 aphic file (type png)
 <use ./my-chapters/my-images/theoretical_background/coupler_directional.png>
 Package pdftex.def Info: ./my-chapters/my-images/theoretical_background/coupler
-_directional.png  used on input line 70.
+_directional.png  used on input line 175.
 (pdftex.def)             Requested size: 409.72125pt x 287.83408pt.
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
-
+[9 <./my-chapters/my-images/theoretical_background/coupler_directional.png>]
 <./my-chapters/my-images/theoretical_background/Cấu trúc của Directional C
-oupler.png, id=191, 385.44pt x 289.08pt>
+oupler.png, id=289, 385.44pt x 289.08pt>
 File: ./my-chapters/my-images/theoretical_background/Cấu trúc của Directio
 nal Coupler.png Graphic file (type png)
 <use ./my-chapters/my-images/theoretical_background/Cấu trúc của Direction
 al Coupler.png>
 Package pdftex.def Info: ./my-chapters/my-images/theoretical_background/Cấu t
-rúc của Directional Coupler.png  used on input line 80.
+rúc của Directional Coupler.png  used on input line 185.
 (pdftex.def)             Requested size: 409.72125pt x 307.28789pt.
 
 
-[6]
-Overfull \vbox (15.3116pt too high) has occurred while \output is active []
+[10 <./my-chapters/my-images/theoretical_background/Cấu trúc của Direction
+al Coupler.png>]
 
+[11]
 
+[12])
 
-[7 <./my-chapters/my-images/theoretical_background/coupler_directional.png> <./
-my-chapters/my-images/theoretical_background/Cấu trúc của Directional Coup
-ler.png>]
-
-[8]
-
-[9])
-
-[10]
+[13]
 \openout2 = `./my-chapters/implementation.aux'.
 
  (my-chapters/implementation.tex
-<./my-chapters/my-images/implementation/Node/DHT11_picture.png, id=225, 270.259
+<./my-chapters/my-images/implementation/Node/DHT11_picture.png, id=316, 270.259
 69pt x 283.0575pt>
 File: ./my-chapters/my-images/implementation/Node/DHT11_picture.png Graphic fil
 e (type png)
@@ -1607,95 +1624,72 @@ e (type png)
 Package pdftex.def Info: ./my-chapters/my-images/implementation/Node/DHT11_pict
 ure.png  used on input line 11.
 (pdftex.def)             Requested size: 204.85672pt x 214.56444pt.
-
-Overfull \hbox (19.72078pt too wide) in alignment at lines 39--43
- [] [] [] [] [] 
- []
-
-
-Overfull \hbox (19.72078pt too wide) in alignment at lines 43--49
- [] [] [] [] [] 
- []
-
-
-Overfull \hbox (19.72078pt too wide) in alignment at lines 49--52
- [] [] [] [] [] 
- []
-
-
-Overfull \hbox (19.72078pt too wide) in alignment at lines 52--55
- [] [] [] [] [] 
- []
-
-
-Overfull \hbox (19.72078pt too wide) in alignment at lines 55--76
- [] [] [] [] [] 
- []
-
-
-
-[11
-
-
-
- <./my-chapters/my-images/implementation/Node/DHT11_picture.png>]
-<./my-chapters/my-images/implementation/Node/DHT11_connect.png, id=235, 560.845
+<./my-chapters/my-images/implementation/Node/DHT11_connect.png, id=317, 560.845
 3pt x 327.47343pt>
 File: ./my-chapters/my-images/implementation/Node/DHT11_connect.png Graphic fil
 e (type png)
 <use ./my-chapters/my-images/implementation/Node/DHT11_connect.png>
 Package pdftex.def Info: ./my-chapters/my-images/implementation/Node/DHT11_conn
-ect.png  used on input line 83.
+ect.png  used on input line 97.
 (pdftex.def)             Requested size: 409.72125pt x 239.22852pt.
 
 
-[12]
+[14
+
+
+
+ <./my-chapters/my-images/implementation/Node/DHT11_picture.png>]
 <./my-chapters/my-images/implementation/Node/overall_communication_process.png,
- id=242, 982.42032pt x 243.15843pt>
+ id=327, 982.42032pt x 243.15843pt>
 File: ./my-chapters/my-images/implementation/Node/overall_communication_process
 .png Graphic file (type png)
 <use ./my-chapters/my-images/implementation/Node/overall_communication_process.
 png>
 Package pdftex.def Info: ./my-chapters/my-images/implementation/Node/overall_co
-mmunication_process.png  used on input line 99.
+mmunication_process.png  used on input line 113.
 (pdftex.def)             Requested size: 409.72125pt x 101.40974pt.
-<./my-chapters/my-images/implementation/Node/mcu_send_data.png, id=243, 733.239
+<./my-chapters/my-images/implementation/Node/mcu_send_data.png, id=328, 733.239
 38pt x 255.95625pt>
 File: ./my-chapters/my-images/implementation/Node/mcu_send_data.png Graphic fil
 e (type png)
 <use ./my-chapters/my-images/implementation/Node/mcu_send_data.png>
 Package pdftex.def Info: ./my-chapters/my-images/implementation/Node/mcu_send_d
-ata.png  used on input line 104.
+ata.png  used on input line 118.
 (pdftex.def)             Requested size: 307.2929pt x 107.27045pt.
 
 
-[13 <./my-chapters/my-images/implementation/Node/DHT11_connect.png> <./my-chapt
+[15 <./my-chapters/my-images/implementation/Node/DHT11_connect.png> <./my-chapt
 ers/my-images/implementation/Node/overall_communication_process.png>]
-<./my-chapters/my-images/implementation/Node/data_0_indications.png, id=253, 43
+<./my-chapters/my-images/implementation/Node/data_0_indications.png, id=338, 43
 2.11438pt x 234.1247pt>
 File: ./my-chapters/my-images/implementation/Node/data_0_indications.png Graphi
 c file (type png)
 <use ./my-chapters/my-images/implementation/Node/data_0_indications.png>
 Package pdftex.def Info: ./my-chapters/my-images/implementation/Node/data_0_ind
-ications.png  used on input line 109.
+ications.png  used on input line 123.
 (pdftex.def)             Requested size: 307.2929pt x 166.50119pt.
-<./my-chapters/my-images/implementation/Node/data_1_indications.png, id=254, 51
+<./my-chapters/my-images/implementation/Node/data_1_indications.png, id=339, 51
 6.42938pt x 244.66406pt>
 File: ./my-chapters/my-images/implementation/Node/data_1_indications.png Graphi
 c file (type png)
 <use ./my-chapters/my-images/implementation/Node/data_1_indications.png>
 Package pdftex.def Info: ./my-chapters/my-images/implementation/Node/data_1_ind
-ications.png  used on input line 114.
+ications.png  used on input line 128.
 (pdftex.def)             Requested size: 307.2929pt x 145.58624pt.
 
 
-[14 <./my-chapters/my-images/implementation/Node/mcu_send_data.png> <./my-chapt
+[16 <./my-chapters/my-images/implementation/Node/mcu_send_data.png> <./my-chapt
 ers/my-images/implementation/Node/data_0_indications.png> <./my-chapters/my-ima
 ges/implementation/Node/data_1_indications.png>])
 
-[15] 
+[17] (main.bbl)
+
+[18
+
+
+] 
 enddocument/afterlastpage (AED): lastpage setting LastPage.
-runsystem(latexminted cleantemp  --timestamp 20251006082117 FAD58DE7366495DB465
+runsystem(latexminted cleantemp  --timestamp 20251006163428 FAD58DE7366495DB465
 0CFEFAC2FCD61)...disabled (restricted).
 
 (main.aux (my-chapters/overview.aux) (my-chapters/theorical_background.aux)
@@ -1705,16 +1699,16 @@ LaTeX2e <2025-06-01> patch level 1
 L3 programming layer <2025-07-20>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: ABB5F00DCBAA337351D3ABE71FFEAA15;5420.
+(rerunfilecheck)             Checksum: 3EF5B9562C00ACE0710EB51325EFB2B0;5077.
  ) 
 Here is how much of TeX's memory you used:
- 32619 strings out of 468134
- 642327 string characters out of 5430740
- 1171080 words of memory out of 5000000
- 60607 multiletter control sequences out of 15000+600000
- 655229 words of font info for 108 fonts, out of 8000000 for 9000
+ 32696 strings out of 468134
+ 644711 string characters out of 5430740
+ 1151042 words of memory out of 5000000
+ 60658 multiletter control sequences out of 15000+600000
+ 657174 words of font info for 110 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,13n,101p,1095b,726s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,13n,101p,1095b,762s stack positions out of 10000i,1000n,20000p,200000b,200000s
  <C:\Users\nguye\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi650\tcrm
 1200.pk><C:/Users/nguye/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfon
 ts/cm/cmex10.pfb><C:/Users/nguye/AppData/Local/Programs/MiKTeX/fonts/type1/publ
@@ -1728,10 +1722,12 @@ ye/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy9.pfb><C:/U
 sers/nguye/AppData/Local/Programs/MiKTeX/fonts/type1/vntex/vnr/vnbx12.pfb><C:/U
 sers/nguye/AppData/Local/Programs/MiKTeX/fonts/type1/vntex/vnr/vnr12.pfb><C:/Us
 ers/nguye/AppData/Local/Programs/MiKTeX/fonts/type1/vntex/vnr/vnr17.pfb><C:/Use
-rs/nguye/AppData/Local/Programs/MiKTeX/fonts/type1/vntex/vnr/vnti12.pfb>
-Output written on main.pdf (18 pages, 1571626 bytes).
+rs/nguye/AppData/Local/Programs/MiKTeX/fonts/type1/vntex/vnr/vnr8.pfb><C:/Users
+/nguye/AppData/Local/Programs/MiKTeX/fonts/type1/vntex/vnr/vnr9.pfb><C:/Users/n
+guye/AppData/Local/Programs/MiKTeX/fonts/type1/vntex/vnr/vnti12.pfb>
+Output written on main.pdf (21 pages, 1821823 bytes).
 PDF statistics:
- 340 PDF objects out of 1000 (max. 8388607)
- 64 named destinations out of 1000 (max. 500000)
- 257 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 447 PDF objects out of 1000 (max. 8388607)
+ 85 named destinations out of 1000 (max. 500000)
+ 259 words of extra memory for PDF output out of 10000 (max. 10000000)
 
