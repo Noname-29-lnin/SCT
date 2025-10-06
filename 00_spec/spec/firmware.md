@@ -1,15 +1,18 @@
 # Cấu trúc thực hiện việc lập trình Firmware
+
 ## Firmware ESP32-C3:
+
     - Sử dụng ESP-IDF framework.
     - Triển khai BLE GATT server với các characteristics cho dữ liệu sensor.
     - Implement deep sleep để tiết kiệm năng lượng.
     - Kết nối và đọc dữ liệu từ các sensor.
+
 ## Mobile App:
+
     - Sử dụng Flutter hoặc React Native cho đa nền tảng.
     - Triển khai BLE scanning và kết nối đến ESP32-C3.
     - Subscribe để nhận dữ liệu sensor qua BLE notifications.
     - Hiển thị dữ liệu theo thời gian thực và lưu trữ local.
-
 
 Bạn hỏi khá sâu vào triển khai thực tế với **ESP32-C3** trong hệ thống BLE, có thêm yêu cầu **đánh thức node bằng WuRx (Wake-up Receiver) qua GPIO\_WU**. Mình sẽ chia thành **quy trình thiết kế firmware** + **các mode BLE cần triển khai**.
 
@@ -36,7 +39,6 @@ Bạn hỏi khá sâu vào triển khai thực tế với **ESP32-C3** trong h�
    ```c
    esp_sleep_enable_ext1_wakeup(GPIO_SEL_XX, ESP_EXT1_WAKEUP_ANY_HIGH);
    ```
-
 2. **Khởi tạo BLE stack (NimBLE hoặc Bluedroid)** trong ESP-IDF.
 
    * Init controller.
@@ -48,7 +50,6 @@ Bạn hỏi khá sâu vào triển khai thực tế với **ESP32-C3** trong h�
 ### (B) Advertising Mode (chế độ phát quảng bá)
 
 * Khi node vừa được **đánh thức từ GPIO\_WU**, bước đầu tiên là **bật BLE ở advertising mode** để smartphone có thể phát hiện.
-
 * Thực hiện:
 
   * Cấu hình **advertising data** (ví dụ: UUID dịch vụ, tên node, trạng thái sensor).
@@ -57,7 +58,6 @@ Bạn hỏi khá sâu vào triển khai thực tế với **ESP32-C3** trong h�
   ```c
   esp_ble_gap_start_advertising(&adv_params);
   ```
-
 * Advertising có 2 mục tiêu:
 
   1. **Thông báo sự hiện diện** của node.
@@ -117,6 +117,7 @@ WuRx phát hiện tín hiệu → GPIO_WU wakeup → ESP32-C3 bật lên
 → Sau khi xong, disconnect
 → ESP32-C3 về deep sleep chờ WuRx lần sau
 ```
+
 ---
 
 ### 🔹 **Service trong BLE là gì?**
@@ -142,7 +143,6 @@ Trong **Bluetooth Low Energy (BLE)**, một **Service** là một **tập hợp 
 
    * Characteristic: Heart Rate Measurement (giá trị nhịp tim, notify).
    * Characteristic: Body Sensor Location (vị trí cảm biến, read).
-
 2. **Battery Service (chuẩn UUID = 0x180F)**
 
    * Characteristic: Battery Level (mức pin %, read/notify).
@@ -155,6 +155,7 @@ Trong **Bluetooth Low Energy (BLE)**, một **Service** là một **tập hợp 
 * **Characteristic = đơn vị dữ liệu cụ thể nằm trong Service.**
 
 ---
+
 Rất hay 👍, bạn đang muốn thiết kế **cấu trúc thư mục (directive tree)** để code firmware cho ESP32-C3, kết hợp **C (low-level register control)** và **C++ (OOP, quản lý logic cao cấp, sensor abstraction)**.
 
 Mình sẽ đề xuất một **cây thư mục** hợp lý để phát triển một **node sensor** BLE, dễ mở rộng nhiều loại sensor:
@@ -220,18 +221,15 @@ Mình sẽ đề xuất một **cây thư mục** hợp lý để phát triển 
   * Nằm trong `drivers/` và một phần trong `sensors/`.
   * Quản lý thanh ghi, GPIO, ADC, I2C, SPI, WuRx wakeup.
   * Dễ kiểm soát bộ nhớ, tốc độ nhanh, ít overhead.
-
 * **C++ (high-level OOP):**
 
   * `sensors/` → tạo lớp `SensorBase` (abstract class), các sensor kế thừa (`TempSensor`, `HumSensor`).
   * `ble_manager.hpp/cpp` → class quản lý BLE (advertising, GATT).
   * `logger` → OOP để quản lý log dễ hơn.
-
 * **Tasks (FreeRTOS):**
 
   * Chia logic thành nhiều task riêng: BLE, sensor, power.
   * Tăng modularity, dễ bảo trì.
-
 * **Utils:** tiện ích chung (buffer, sleep, logger).
 
 ---
@@ -245,5 +243,7 @@ Mình sẽ đề xuất một **cây thư mục** hợp lý để phát triển 
   * *Tasks*: phối hợp hệ thống.
 * **Dễ mở rộng:** chỉ cần thêm `new_sensor.cpp/hpp` trong `sensors/`.
 * **Dễ test:** thư mục `tests/` để viết test cho driver hoặc class.
+
+https://www.youtube.com/watch?v=0Q_4q1zU6Zc
 
 ---
