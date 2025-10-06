@@ -1,0 +1,127 @@
+\section{Thiết kế và thực hiện}
+
+\subsection{Thiết kế node BLE từ chip EPS32-C3}
+
+\subsubsection{Sensor}
+
+Nhóm sử dụng \textbf{DHT11 Humidity \& Temperature Sensor} cho Node. Với DHT11 Sensor có chức năng vừa đo độ ẩm và nhiệt độ. Thực hiện bằng giao thức one-wire serial interface.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.4\linewidth]{./my-chapters/my-images/implementation/Node/DHT11_picture.png}
+	\caption{Hình ảnh cảu DHT11.}
+\end{figure}
+
+Với thiết kế nhỏ gọn, tiêu thụ công suất thấp và có thể truyền tín hiệu lên tới 20m. 
+
+\noindent\textbf{Technical Specifications}
+
+\begin{itemize}[label=-]
+	\item Overview:
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{|>{\centering\arraybackslash}m{1.5cm}
+					|>{\raggedright\arraybackslash}m{2.5cm}
+					|>{\raggedright\arraybackslash}m{2.5cm}
+					|>{\raggedright\arraybackslash}m{2.5cm}
+					|>{\raggedright\arraybackslash}m{2.5cm}
+					|>{\raggedright\arraybackslash}m{2.5cm}|}
+					\hline
+				Item & Measurement Range & Humiidity Accuracy & Temperature Accuracy & Resolation & Package \\ \hline 
+				DHT11 & $20-90 \%$ RH $0-50^{o}C$ & $\pm 5\%$ RH & $\pm 2^{o}C$ & 1 & 4 Pin Single Row \\ \hline
+			\end{tabular}
+		\end{table}
+	\item Detailed Specifications:
+		\begin{longtable}{|>{\centering\arraybackslash}m{3.5cm}
+				|>{\centering\arraybackslash}m{4cm}
+				|>{\centering\arraybackslash}m{3cm}
+				|>{\centering\arraybackslash}m{3cm}
+				|>{\centering\arraybackslash}m{3cm}|}
+			\caption{Typical Humidity and Temperature Characteristics} \label{tab:ht_specs} \\
+			\hline
+			\textbf{Parameters} & \textbf{Conditions} & \textbf{Minimum} & \textbf{Typical} & \textbf{Maximum} \\ \hline
+			\endfirsthead
+			
+			\multicolumn{5}{c}%
+			{{\tablename\ \thetable{} -- continued from previous page}} \\
+			\hline
+			\textbf{Parameters} & \textbf{Conditions} & \textbf{Minimum} & \textbf{Typical} & \textbf{Maximum} \\ \hline
+			\endhead
+			
+			\hline \multicolumn{5}{r}{{Continued on next page}} \\
+			\endfoot
+			
+			\hline
+			\endlastfoot
+			
+			\multicolumn{5}{|c|}{\textbf{Humidity Characteristics}} \\ \hline
+			Resolution & -- & 1\%RH (8 Bit) & 1\%RH (8 Bit) & 1\%RH (8 Bit) \\ \hline
+			Repeatability & -- & -- & $\pm 1\%$RH & -- \\ \hline
+			Accuracy & 25$^{\circ}$C & -- & $\pm 4\%$RH & -- \\ \hline
+			Accuracy & 0--50$^{\circ}$C & -- & $\pm 5\%$RH & -- \\ \hline
+			Interchangeability & \multicolumn{4}{c|}{Fully Interchangeable} \\ \hline
+			Measurement Range & 0$^{\circ}$C & 30\%RH & -- & 90\%RH \\ \hline
+			Measurement Range & 25$^{\circ}$C & 20\%RH & -- & 90\%RH \\ \hline
+			Measurement Range & 50$^{\circ}$C & 20\%RH & -- & 80\%RH \\ \hline
+			Response Time & 1/e (63\%), 25$^{\circ}$C, 1 m/s Air & 6 s & 10 s & 15 s \\ \hline
+			Hysteresis & -- & -- & $\pm 1\%$RH & -- \\ \hline
+			Long-Term Stability & Typical & -- & $\pm 1\%$RH/year & -- \\ \hline
+			
+			\multicolumn{5}{|c|}{\textbf{Temperature Characteristics}} \\ \hline
+			Resolution & -- & 1$^{\circ}$C (8 Bit) & 1$^{\circ}$C (8 Bit) & 1$^{\circ}$C (8 Bit) \\ \hline
+			Repeatability & -- & -- & $\pm 1^{\circ}$C & -- \\ \hline
+			Accuracy & -- & -- & $\pm 1^{\circ}$C & $\pm 2^{\circ}$C \\ \hline
+			Measurement Range & -- & 0$^{\circ}$C & -- & 50$^{\circ}$C \\ \hline
+			Response Time & 1/e (63\%) & 6 s & -- & 30 s \\ \hline
+		\end{longtable}
+\end{itemize}
+
+\noindent\textbf{Typical Application}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\linewidth]{./my-chapters/my-images/implementation/Node/DHT11_connect.png}
+	\caption{Typical Application.}
+\end{figure}
+
+\noindent\textbf{Power supply}
+
+Điện áp cấp cho DHT11 thông thường dao động từ $3-5.5$ VDC.
+
+\noindent\textbf{Communication Process: Serial Interface (Single-Wire Two-Way)}
+
+Định dạng dữ liệu một đường truyền được sử dụng để giao tiếp và đồng bộ giữa MCU và cảm biến DHT11. Một quá trình giao tiếp mất khoảng $4ms$.
+
+\begin{itemize}[label=-]
+	\item Overall Communication Process: Khi MCU gửi tín hiệu hoạt động, DHT11 chuyển từ chế độ tiết kiệm năng lượng sang chế độ hoạt động và chờ MCU hoàn thành tín hiệu bắt đầu. Khi MCU đã hoàn thành thì DHT11 sẽ gửi một tín hiệu xác nhận với 40-bit dữ liệu bao gồm các dữ liệu liên quan đến độ ẩm và nhiệt độ cho MCU.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=.8\linewidth]{./my-chapters/my-images/implementation/Node/overall_communication_process.png}
+		\end{figure}
+	\item MCU Sends out Start Signal to DHT: Nếu không hoạt động thì đường dây Data sẽ luôn ở mức cao. Nếu có tín hiệu cần giao tiếp giữa MCU và DHT11 thì MCU sẽ kéo điện áp trên đường dây Data từ 1 xuống 0 trong khoảng ít nhất $18ms$ để đảm bảo DHT nhận được tín hiệu start từ MCU, sau đó MCU sẽ kéo lên 1 trong khoảng $20-40us$.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=.6\linewidth]{./my-chapters/my-images/implementation/Node/mcu_send_data.png}
+		\end{figure}
+	\item DHT Responses to MCU: Khi DHT nhận được tín hiệu start, nó sẽ gửi lại một tín hiệu xác nhận low-voltage-level với khoảng $80us$. Sau đó, chương trình của DHT đặt mức điện áp của đường dữ liệu đơn từ thấp lên cao và giữ trong $80us$ để DHT chuẩn bị gửi dữ liệu.
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=.6\linewidth]{./my-chapters/my-images/implementation/Node/data_0_indications.png}
+			\caption{Data "0" indication.}
+		\end{figure}
+		\begin{figure}[H]
+			\centering
+			\includegraphics[width=.6\linewidth]{./my-chapters/my-images/implementation/Node/data_1_indications.png}
+			\caption{Data "1" indication.}
+		\end{figure}
+\end{itemize}
+
+\subsubsection{BLE}
+
+\noindent\textbf{Advertising, notification và payload BLE}
+
+
+
+\noindent\textbf{Quản lý power state (sleep, wake-up, duty cycle)}
+
+\noindent\textbf{Ngắt (interrupt) từ GPIO\_WU và chuỗi wake-up}
