@@ -2,7 +2,7 @@
 \contentsline {section}{\numberline {1}Giới thiệu tổng quan}{1}{section.1}%
 \contentsline {subsection}{\numberline {1.1}Nhiệm vụ của nhóm}{1}{subsection.1.1}%
 \contentsline {subsection}{\numberline {1.2}Cấu trúc báo cáo đề tài}{1}{subsection.1.2}%
-\contentsline {section}{\numberline {2}Theorical Background}{2}{section.2}%
+\contentsline {section}{\numberline {2}Cơ sở lý thuyết}{2}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Tổng quan về công nghệ Bluetooth Low Energy (BLE)}{2}{subsection.2.1}%
 \contentsline {subsubsection}{\numberline {2.1.1}BLE Beacons}{3}{subsubsection.2.1.1}%
 \contentsline {subsubsection}{\numberline {2.1.2}BLE protocol stack}{3}{subsubsection.2.1.2}%
@@ -19,5 +19,9 @@
 \contentsline {section}{\numberline {3}Thiết kế và thực hiện}{14}{section.3}%
 \contentsline {subsection}{\numberline {3.1}Thiết kế node BLE từ chip EPS32-C3}{14}{subsection.3.1}%
 \contentsline {subsubsection}{\numberline {3.1.1}Sensor}{14}{subsubsection.3.1.1}%
-\contentsline {subsubsection}{\numberline {3.1.2}BLE}{16}{subsubsection.3.1.2}%
-\contentsline {section}{Tài liệu tham khảo}{18}{subsubsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.2}BLE}{17}{subsection.3.2}%
+\contentsline {subsubsection}{\numberline {3.2.1}Sơ đồ khối của bộ BLE với chip ESP32-C3}{21}{subsubsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.3}Thiết kế Directional Coupler}{21}{subsection.3.3}%
+\contentsline {subsubsection}{\numberline {3.3.1}Thiết kế Schematic}{21}{subsubsection.3.3.1}%
+\contentsline {subsubsection}{\numberline {3.3.2}Thiết kế Layout}{28}{subsubsection.3.3.2}%
+\contentsline {section}{Tài liệu tham khảo}{31}{table.caption.27}%

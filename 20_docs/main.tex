@@ -27,6 +27,9 @@
 	% In cover page
 	\MycoverFinalProject
 	\newpage
+	\pagestyle{fancy}
+	\fancyhf{}
+	\MycountPages{roman}
 	\renewcommand{\arraystretch}{1.5} % tăng khoảng cách dòng (row height)
 	\setlength{\parindent}{1cm}
 	\onehalfspacing
@@ -62,9 +65,14 @@
 	\newpage
 	\fontsize{13}{14}\selectfont
 	\tableofcontents
+	\listoffigures
+	\listoftables
+	\listoflistings
 	\newpage
 	\pagestyle{fancy}
 	\MycountPages{number}
+	\fancyhead[R]{GVHD: Dr. NGUYEN Van Hieu}
+	\fancyfoot[L]{\includegraphics[width=.02\linewidth]{./my-chapters/my-images/logo_DEE.png}\text{ Department of Telecommunications Engineering}}
 	\include{./my-chapters/overview.tex}
 	\include{./my-chapters/theorical_background.tex}
 	\include{./my-chapters/implementation.tex}

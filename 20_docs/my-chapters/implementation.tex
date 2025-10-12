@@ -130,12 +130,282 @@ Với thiết kế nhỏ gọn, tiêu thụ công suất thấp và có thể tr
 		\end{figure}
 \end{itemize}
 
-\subsubsection{BLE}
+\noindent\textbf{Thực thi đọc dữ liệu từ DHT11}
 
-\noindent\textbf{Advertising, notification và payload BLE}
+\begin{lstlisting}[style=StyleCode, language=C, caption={Thực thi đọc dữ liệu từ sensor DHT11.}]
+	#include <DHT.h>
+	
+	// ------------------- DHT11 Configuration -------------------
+	#define DHTPIN 10
+	#define DHTTYPE DHT11
+	DHT dht(DHTPIN, DHTTYPE);
+	
+	void setup() {
+		Serial.begin(115200);
+		dht.begin();
+		
+		// --- Read DHT11 sensor data ---
+		float temperature = dht.readTemperature();
+		float humidity = dht.readHumidity();
+	}
+\end{lstlisting}
 
+\subsection{BLE}
 
+\lstinputlisting[style=StyleCode, language=C, caption={Code thực thi chính của BLE sensor node.}]{./my-chapters/my-refs/Code/code.c}
+
+\begin{itemize}[label=-]
+	\item \textbf{Advertising BLE:}
+	Là quá trình mà ESP32 phát các gói tin quảng bá định kỳ chứa thông tin cơ bản của thiết bị, chẳng hạn như tên thiết bị và UUID của dịch vụ BLE.
+	Nhờ vào cơ chế này, các thiết bị xung quanh (ví dụ: smartphone hay laptop) có thể phát hiện và khởi tạo kết nối với ESP32.
+	\begin{lstlisting}[style=StyleCode, language=C]
+		pServer->getAdvertising()->start();
+	\end{lstlisting}
+	
+	\item \textbf{Notification BLE:}  
+	Là quá trình mà thiết bị đóng vai trò Server (ESP32) chủ động gửi dữ liệu cập nhật đến thiết bị Client (ví dụ: điện thoại) mà không cần Client phải gửi yêu cầu đọc.  
+	Cơ chế này rất hữu ích để truyền liên tục các giá trị cảm biến theo thời gian thực như nhiệt độ và độ ẩm.  
+	\begin{lstlisting}[style=StyleCode, language=C]
+		pCharacteristicTX->notify();
+	\end{lstlisting}
+	
+	\item \textbf{Payload BLE:}  
+	Là phần dữ liệu thực tế được chứa trong gói tin BLE.  
+	Trong hệ thống này, payload bao gồm chuỗi dữ liệu định dạng sẵn, chứa thông tin về nhiệt độ và độ ẩm đo được từ cảm biến DHT11.  
+	\begin{lstlisting}[style=StyleCode, language=C]
+		pCharacteristicTX->setValue(sensorData);
+	\end{lstlisting}
+	
+\end{itemize}
 
 \noindent\textbf{Quản lý power state (sleep, wake-up, duty cycle)}
 
-\noindent\textbf{Ngắt (interrupt) từ GPIO\_WU và chuỗi wake-up}
+\begin{itemize}[label=-]
+	\item \textbf{Sleep Mode:} Giảm tiêu thụ năng lượng	thông qua.
+	\begin{lstlisting}[style=StyleCode, language=C]
+		esp_deep_sleep_start()
+	\end{lstlisting}
+	\item \textbf{Wake-up Timer:} Tự thức dậy sau một khoảng thời gian.
+	\begin{lstlisting}[style=StyleCode, language=C]
+		esp_sleep_enable_timer_wakeup()
+	\end{lstlisting}
+	\item \textbf{Duty Cycle Control:} Giới hạn thời gian hoạt động.
+	\begin{lstlisting}[style=StyleCode, language=C]
+		void loop() {
+			// Not used. After deep sleep, ESP32 restarts and runs setup() again.
+		}
+	\end{lstlisting}
+%	\item \textbf{}
+%	\begin{lstlisting}[style=StyleCode, language=C]
+%		esp_sleep_enable_timer_wakeup()
+%	\end{lstlisting}
+\end{itemize}
+
+\noindent\textbf{Ngắt (interrupt) từ GPIO\_WU}
+
+\begin{itemize}[label=-]
+	\item \textbf{Setup GPIO:} GPIO\_03 là chân nhận tính hiệu đánh thức từ bộ WuRx (Wake-up Receiver).
+	\begin{lstlisting}[style=StyleCode, language=C]
+		#define WURX_PIN    3      // External wake-up interrupt from WuRx
+	\end{lstlisting}
+	\item \textbf{Nguyên nhân đánh thức:} Nếu ESP32-C3 được đánh thức bởi tín hiệu ngắt ngoài (EXT0), thì nguyên nhân là do WuRx kích hoạt thông qua GPIO3. Nếu không, thì là khởi động bình thường (sau reset hoặc cấp nguồn).
+	\begin{lstlisting}[style=StyleCode, language=C]
+		// --- Check wake-up reason ---
+		esp_sleep_wakeup_cause_t wakeup_reason = esp_sleep_get_wakeup_cause();
+		if (wakeup_reason == ESP_SLEEP_WAKEUP_EXT0) {
+			Serial.println("[SYSTEM] Wake-up triggered by WuRx (GPIO3)");
+		} else {
+			Serial.println("[SYSTEM] Normal power-up");
+		}
+	\end{lstlisting}
+	\item \textbf{Kích hoạt cơ chế đánh thức:} đánh thức bằng mức tín hiệu thấp (LOW) trên GPIO\_03.
+	\begin{lstlisting}[style=StyleCode, language=C]
+		// Enable wake-up on GPIO3 (LOW level = wake-up)
+		esp_sleep_enable_ext0_wakeup((gpio_num_t)WURX_PIN, 0);
+	\end{lstlisting}
+\end{itemize}
+
+%\noindent\textbf{Ngắt đánh thức từ bộ WuRx (Wake-up Interrupt GPIO3)}
+%
+%Trong hệ thống, mạch \textbf{WuRx (Wake-up Receiver)} hoạt động ở mức tiêu thụ điện cực thấp, có nhiệm vụ giám sát tín hiệu RF đầu vào và chỉ đánh thức vi điều khiển khi có dữ liệu hợp lệ. 
+%Trên ESP32-C3, chân \textbf{GPIO3} được cấu hình làm ngắt đánh thức ngoài (\textit{External Wake-up EXT0}).
+%
+%\begin{lstlisting}[language=C, caption={Cấu hình chân GPIO3 làm ngắt đánh thức hệ thống}]
+%	#define WURX_PIN 3      // External wake-up interrupt from WuRx
+%	esp_sleep_enable_ext0_wakeup((gpio_num_t)WURX_PIN, 0);
+%\end{lstlisting}
+%
+%Khi mạch WuRx phát hiện tín hiệu hợp lệ, nó sẽ kéo mức điện áp trên chân GPIO3 xuống thấp (LOW), từ đó đánh thức MCU thoát khỏi chế độ \textit{Deep Sleep}.
+%
+%\begin{lstlisting}[language=C, caption={Kiểm tra nguyên nhân đánh thức hệ thống}]
+%	esp_sleep_wakeup_cause_t wakeup_reason = esp_sleep_get_wakeup_cause();
+%	if (wakeup_reason == ESP_SLEEP_WAKEUP_EXT0)
+%	Serial.println("[SYSTEM] Wake-up triggered by WuRx (GPIO3)");
+%\end{lstlisting}
+%
+%Cấu hình này giúp hệ thống hoạt động theo cơ chế \textbf{event-driven}, 
+%chỉ tiêu thụ năng lượng khi có sự kiện từ WuRx, 
+%từ đó tối ưu hoá \textbf{duty cycle} và kéo dài thời gian hoạt động của cảm biến.
+%
+
+\subsubsection{Sơ đồ khối của bộ BLE với chip ESP32-C3}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=\linewidth]{./my-chapters/my-diagrams/Schematic_for_ESP.pdf}
+	\caption{Schematic of a BLE node using ESP32-C3.}
+\end{figure}
+
+\subsection{Thiết kế Directional Coupler}
+\subsubsection{Thiết kế Schematic}
+
+Sử dụng phần mềm Advanced Design System của Keysight để thiết kế Schematic sơ bộ cho Coupled Line Directional Coupler.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\linewidth]{./my-chapters/my-images/implementation/coupler/overview_schemateic_coupler.png}
+	\caption{Schematic sơ bộ của Coupled Line Directional Coupler.}
+\end{figure}
+
+Sử dụng công cụ LineCalc để tiến hành tính toán các thông số cho Microstrip:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\linewidth]{./my-chapters/my-images/implementation/coupler/giaodien.png}
+	\caption{Giao diện của LineCalc.}
+\end{figure}
+
+Đầu tiên, ta sẽ tính toán thông số cho đường dây trước, để làm được thì ta sẽ xem quy chuẩn PCB của nhà sản xuất PCB trước. Ở đây nhóm chọn Thiên Lam PCB để làm mạch in PCB:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\linewidth]{./my-chapters/my-images/implementation/coupler/quychuant_pcd.png}
+	\caption{Quy chuẩn mạch in của Thiên Lam PCB.}
+\end{figure}
+
+Có thể thấy Thiên Lam PCB sử dụng vật liệu PCB là FR-4 Tg135/140/155/170 với các số thể hiện nhiệt độ mà PCB chịu đựng được. Nhóm sẽ chọn FR-4 Tg135 cho dự án này.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\linewidth]{./my-chapters/my-refs/530837204-FR4-Datasheet.pdf}
+	\caption{Datasheet của FR4-Tg135.}
+\end{figure}
+
+Trong datasheet này, ta chú ý 2 thông số: 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\linewidth]{./my-chapters/my-refs/530837204-FR4-Datasheet _Copy.pdf}
+	\caption{Thông số độ điện thẩm và hằng số tổn hao.}
+\end{figure}
+
+Từ datasheet, nhóm sẽ chọn giá trị $Er=4.6$ và $TanD=0.002$ cho dự án này. Sau vài lần mô phỏng, tinh chỉnh thông số cho phù hợp dựa trên phần mềm tính toán, nhóm quyết định chọn các thông số cho đường dây như bên dưới:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\linewidth]{./my-chapters/my-images/implementation/coupler/thogsoduongday.png}
+	\caption{Các thông số kích thước đường dây sau khi chạy công cụ LineCalc.}
+\end{figure}
+
+Thông số của đường dây:
+\begin{itemize}[label=-]
+	\item Độ điện thẩm: $Er=4.6$
+	\item Độ dày của bo mạch PCB: $H=0.6mm$
+	\item Độ dày của đường microtrip: $T=35\mu m$
+	\item Điện trở của đường dây: $Z_{0} = 50\Omega$
+	\item Hệ số Coupling: $C=-10dB$ (để lấy ra $1/10$ công suất ngõ vào làm tín hiệu)
+\end{itemize}
+
+Từ đó, ta có kích thước của đường dây microtrip coupling:
+\begin{itemize}[label=-]
+	\item Độ rộng của dây: $W = 0.841706 mm$
+	\item Độ dài của cặp đường dây coupling: $L = 17.7398 mm$
+	\item Khoảng cách giữa 2 đường dây coupling: $S = 0.192303 mm$
+\end{itemize}
+
+Ngoài ra, với kích thước của đầu SMA female như bên dưới, ta thiết kế thêm các đường dây TL5, 6, 7 và 8 để có thêm kích thước hàn các đầu SMA này vào board PCB:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\linewidth]{./my-chapters/my-images/implementation/coupler/thongsokichthuocdau.png}
+	\caption{Các thông số kích thước của đầu SMA cái $13.5mm$.}
+\end{figure}
+
+Từ đó, nhóm chọn các thông số:
+\begin{itemize}[label=-]
+	\item Chiều rộng đường dây: $W = 0.841706 mm$
+	\item Chiều dài đường dây: $L = 15mm$
+\end{itemize}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\linewidth]{./my-chapters/my-images/implementation/coupler/schematic_saukhi.png}
+	\caption{Schematic sau khi đã nhập thông số kích thước của microstrip.}
+\end{figure}
+
+Sau đó, tiến hành chạy mô phỏng và kiểm tra kết quả:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\linewidth]{./my-chapters/my-images/implementation/coupler/ketquamophong.png}
+	\caption{Kết quả mô phỏng.}
+\end{figure}
+
+\textbf{Đánh giá kết quả mô phỏng:}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|>{\centering\arraybackslash}m{2.5cm}
+			|>{\raggedright\arraybackslash}m{3cm}
+			|>{\raggedright\arraybackslash}m{3cm}
+			|>{\raggedright\arraybackslash}m{3cm}|}
+		\hline
+		\textbf{Thông số} & \textbf{Kì vọng} & \textbf{Đạt được} & \textbf{Đánh giá} \\ \hline
+		$S_{11}$ & Nhỏ hơn -20 dB & -27.794 dB & Đạt \\ \hline
+		$S_{12}$ & Lớn hơn -1 dB & -0.666 dB & Đạt \\ \hline
+		$S_{13}$ & -10 dB & -10.142 dB & Đạt \\ \hline
+		$S_{14}$ & Nhỏ hơn -20 dB & -19.071 dB & Gần đạt \\ \hline
+	\end{tabular}
+%	\caption{Bảng so sánh thông số đo được và kì vọng}
+	\label{tab:s_parameters}
+\end{table}
+
+
+\subsubsection{Thiết kế Layout}
+
+Từ những thông số, kích thước đã tính toán ở trên, ta tiến hành vẽ layout trên ADS:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\linewidth]{./my-chapters/my-images/implementation/coupler/layout_coupler.png}
+	\caption{Layout của Coupled Line Directional Coupler.}
+\end{figure}
+
+Sau khi hoàn thành layout, tiến hành chạy mô phỏng và kiểm tra kết quả đạt được:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.8\linewidth]{./my-chapters/my-images/implementation/coupler/ketquamophong_layout.png}
+	\caption{Kết quả sau khi chạy mô phỏng layout của Coupled Line Directional Coupler.}
+\end{figure}
+
+\textbf{Đánh giá kết quả mô phỏng:}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|>{\centering\arraybackslash}m{2.5cm}
+			|>{\raggedright\arraybackslash}m{3cm}
+			|>{\raggedright\arraybackslash}m{3cm}
+			|>{\raggedright\arraybackslash}m{3cm}|}
+		\hline
+		\textbf{Thông số} & \textbf{Kì vọng} & \textbf{Đạt được} & \textbf{Đánh giá} \\ \hline
+		$S_{11}$ & Nhỏ hơn -20 dB & -29.2 dB & Đạt \\ \hline
+		$S_{12}$ & Lớn hơn -1 dB & -0.668 dB & Đạt \\ \hline
+		$S_{13}$ & -10 dB & -10.925 dB & Gần đạt với sai số dưới 1 dB \\ \hline
+		$S_{14}$ & Nhỏ hơn -20 dB & -20.045 dB & Đạt \\ \hline
+	\end{tabular}
+%	\caption{Bảng so sánh thông số S-parameters: giá trị kì vọng và đo được}
+	\label{tab:s_parameters_result}
+\end{table}
+
+Thiết kế layout đã tối ưu hóa thành công các tham số $S_{11}$ và $S_{14}$ so với mô hình schematic ban đầu. Mặc dù S13 có độ lệch nhỏ, hiệu suất tổng thể của bộ ghép định hướng là rất tốt và đạt yêu cầu cho băng tần 2.4 GHz.
