@@ -225,6 +225,21 @@ Với thiết kế nhỏ gọn, tiêu thụ công suất thấp và có thể tr
 	\end{lstlisting}
 \end{itemize}
 
+\subsubsection{Kiểm tra chương trình trên ESP32-C3-DevKitM-1}
+
+Nhóm em sử dụng DEVKIT V1 ESP32 để kiểm tra trước chương trình vì DEVKIT trên chip ESP32-C3. Nhóm em sử dung thêm phần mền \textbf{Serial Bluetooth Terminal} (\includegraphics[width=.03\linewidth]{./my-chapters/my-images/implementation/Ble/unnamed.png}) để kiểm tra dữ liệu gửi về smartphone. 
+
+\begin{figure}[H]
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\includegraphics[width=\linewidth]{./my-chapters/my-images/implementation/Ble/anhthucte.jpg}
+	\end{minipage}
+	\begin{minipage}{.5\linewidth}
+		\centering
+		\includegraphics[width=.7\linewidth]{./my-chapters/my-images/implementation/Ble/ketquantrendienthoai.jpg}
+	\end{minipage}
+	\caption{Hình ảnh thực tế và kết quả kiểm tra đoạn code trên DEVKIT.}
+\end{figure}
 %\noindent\textbf{Ngắt đánh thức từ bộ WuRx (Wake-up Interrupt GPIO3)}
 %
 %Trong hệ thống, mạch \textbf{WuRx (Wake-up Receiver)} hoạt động ở mức tiêu thụ điện cực thấp, có nhiệm vụ giám sát tín hiệu RF đầu vào và chỉ đánh thức vi điều khiển khi có dữ liệu hợp lệ. 
@@ -255,6 +270,8 @@ Với thiết kế nhỏ gọn, tiêu thụ công suất thấp và có thể tr
 	\includegraphics[width=\linewidth]{./my-chapters/my-diagrams/Schematic_for_ESP.pdf}
 	\caption{Schematic of a BLE node using ESP32-C3.}
 \end{figure}
+
+\includegraphics[width=\linewidth]{./my-chapters/my-diagrams/Schematic_for_ESP_1.pdf}
 
 \subsection{Thiết kế Directional Coupler}
 \subsubsection{Thiết kế Schematic}
@@ -309,32 +326,34 @@ Từ datasheet, nhóm sẽ chọn giá trị $Er=4.6$ và $TanD=0.002$ cho dự 
 
 Thông số của đường dây:
 \begin{itemize}[label=-]
-	\item Độ điện thẩm: $Er=4.6$
-	\item Độ dày của bo mạch PCB: $H=0.6mm$
-	\item Độ dày của đường microtrip: $T=35\mu m$
+	\item Độ điện thẩm: $\text{Er}=4.6$
+	\item Độ dày của bo mạch PCB: $\text{H}=0.6\,\textsf{mm}$
+	\item Độ dày của đường microtrip: $\text{T}=35\mu m$
+	\item Độ dẫn điện của mircotrip: $\text{Coud} = 5.8 \times 10^{7} \,\textsf{S/m}$ (Đối với microtrip là đồng)
+	\item Hệ số tổn hao: $\text{TanD} = 0.002$
 	\item Điện trở của đường dây: $Z_{0} = 50\Omega$
 	\item Hệ số Coupling: $C=-10dB$ (để lấy ra $1/10$ công suất ngõ vào làm tín hiệu)
 \end{itemize}
 
-Từ đó, ta có kích thước của đường dây microtrip coupling:
-\begin{itemize}[label=-]
-	\item Độ rộng của dây: $W = 0.841706 mm$
-	\item Độ dài của cặp đường dây coupling: $L = 17.7398 mm$
-	\item Khoảng cách giữa 2 đường dây coupling: $S = 0.192303 mm$
-\end{itemize}
+%Từ đó, ta có kích thước của đường dây microtrip coupling:
+%\begin{itemize}[label=-]
+%	\item Độ rộng của dây: $\text{W} = 0.841706 \,\textsf{mm}$
+%	\item Độ dài của cặp đường dây coupling: $\text{L} = 17.7398 \,\textsf{mm}$
+%	\item Khoảng cách giữa 2 đường dây coupling: $\text{S} = 0.192303 \,\textsf{mm}$
+%\end{itemize}
 
 Ngoài ra, với kích thước của đầu SMA female như bên dưới, ta thiết kế thêm các đường dây TL5, 6, 7 và 8 để có thêm kích thước hàn các đầu SMA này vào board PCB:
 
 \begin{figure}[H]
 	\centering
 	\includegraphics[width=.8\linewidth]{./my-chapters/my-images/implementation/coupler/thongsokichthuocdau.png}
-	\caption{Các thông số kích thước của đầu SMA cái $13.5mm$.}
+	\caption{Các thông số kích thước của đầu SMA cái $13.5\,\textsf{mm}$.}
 \end{figure}
 
 Từ đó, nhóm chọn các thông số:
 \begin{itemize}[label=-]
-	\item Chiều rộng đường dây: $W = 0.841706 mm$
-	\item Chiều dài đường dây: $L = 15mm$
+	\item Chiều rộng đường dây: $W = 0.841706 \,\textsf{mm}$
+	\item Chiều dài đường dây: $L = 7\,\textsf{mm}$
 \end{itemize}
 
 \begin{figure}[H]
@@ -356,17 +375,17 @@ Sau đó, tiến hành chạy mô phỏng và kiểm tra kết quả:
 \begin{table}[H]
 	\centering
 	\begin{tabular}{|>{\centering\arraybackslash}m{2.5cm}
-			|>{\raggedright\arraybackslash}m{3cm}
-			|>{\raggedright\arraybackslash}m{3cm}
-			|>{\raggedright\arraybackslash}m{3cm}|}
+			|>{\raggedright\arraybackslash}m{3.5cm}
+			|>{\centering\arraybackslash}m{3cm}
+			|>{\centering\arraybackslash}m{3cm}|}
 		\hline
-		\textbf{Thông số} & \textbf{Kì vọng} & \textbf{Đạt được} & \textbf{Đánh giá} \\ \hline
-		$S_{11}$ & Nhỏ hơn -20 dB & -27.794 dB & Đạt \\ \hline
-		$S_{12}$ & Lớn hơn -1 dB & -0.666 dB & Đạt \\ \hline
-		$S_{13}$ & -10 dB & -10.142 dB & Đạt \\ \hline
-		$S_{14}$ & Nhỏ hơn -20 dB & -19.071 dB & Gần đạt \\ \hline
+		\textbf{Thông số} 	& \textbf{Kì vọng} 				& \textbf{Đạt được} 		& \textbf{Đánh giá} \\ \hline
+		$S_{11}$ 			& Nhỏ hơn $-20 \,\textsf{dB}$	& $-20.557 	\,\textsf{dB}$ 	& Đạt \\ \hline
+		$S_{12}$ 			& Lớn hơn $-1 \,\textsf{dB}$ 	& $-0.530 	\,\textsf{dB}$	& Đạt \\ \hline
+		$S_{13}$ 			& Gần bằng $-10 \,\textsf{dB}$ 	& $-10.518	\,\textsf{dB}$	& Đạt \\ \hline
+		$S_{14}$ 			& Nhỏ hơn $-20 \,\textsf{dB}$	& $-23.669  \,\textsf{dB}$	& Đạt \\ \hline
 	\end{tabular}
-%	\caption{Bảng so sánh thông số đo được và kì vọng}
+	\caption{Bảng so sánh thông số đo được và kì vọng khi mô phỏng Coupled line Directional Coupler.}
 	\label{tab:s_parameters}
 \end{table}
 
@@ -394,18 +413,18 @@ Sau khi hoàn thành layout, tiến hành chạy mô phỏng và kiểm tra kế
 \begin{table}[H]
 	\centering
 	\begin{tabular}{|>{\centering\arraybackslash}m{2.5cm}
-			|>{\raggedright\arraybackslash}m{3cm}
-			|>{\raggedright\arraybackslash}m{3cm}
-			|>{\raggedright\arraybackslash}m{3cm}|}
+			|>{\raggedright\arraybackslash}m{3.5cm}
+			|>{\centering\arraybackslash}m{3cm}
+			|>{\centering\arraybackslash}m{3cm}|}
 		\hline
-		\textbf{Thông số} & \textbf{Kì vọng} & \textbf{Đạt được} & \textbf{Đánh giá} \\ \hline
-		$S_{11}$ & Nhỏ hơn -20 dB & -29.2 dB & Đạt \\ \hline
-		$S_{12}$ & Lớn hơn -1 dB & -0.668 dB & Đạt \\ \hline
-		$S_{13}$ & -10 dB & -10.925 dB & Gần đạt với sai số dưới 1 dB \\ \hline
-		$S_{14}$ & Nhỏ hơn -20 dB & -20.045 dB & Đạt \\ \hline
+		\textbf{Thông số} 	& \textbf{Kì vọng} 				& \textbf{Đạt được} 		& \textbf{Đánh giá} \\ \hline
+		$S_{11}$ 			& Nhỏ hơn $-20 \,\textsf{dB}$	& $-36.989  \,\textsf{dB}$ 	& Đạt \\ \hline
+		$S_{12}$ 			& Lớn hơn $-1 \,\textsf{dB}$ 	& $-0.469 	\,\textsf{dB}$	& Đạt \\ \hline
+		$S_{13}$ 			& Gần bằng $-10 \,\textsf{dB}$ 	& $-11.269 	\,\textsf{dB}$	& Gần đạt \\ \hline
+		$S_{14}$ 			& Nhỏ hơn $-20 \,\textsf{dB}$	& $-25.939	\,\textsf{dB}$	& Đạt \\ \hline
 	\end{tabular}
-%	\caption{Bảng so sánh thông số S-parameters: giá trị kì vọng và đo được}
+		\caption{Bảng so sánh thông số đo được và kì vọng sau khi chạy mô phỏng layout của Coupled Line Directional Coupler.}
 	\label{tab:s_parameters_result}
 \end{table}
 
-Thiết kế layout đã tối ưu hóa thành công các tham số $S_{11}$ và $S_{14}$ so với mô hình schematic ban đầu. Mặc dù S13 có độ lệch nhỏ, hiệu suất tổng thể của bộ ghép định hướng là rất tốt và đạt yêu cầu cho băng tần 2.4 GHz.
+Thiết kế layout đã tối ưu hóa thành công các tham số $S_{11}$ và $S_{14}$ so với mô hình schematic ban đầu. Mặc dù $S_{13}$ có độ lệch nhỏ, hiệu suất tổng thể của bộ ghép định hướng là rất tốt và đạt yêu cầu cho băng tần 2.4 GHz.
