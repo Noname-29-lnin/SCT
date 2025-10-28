@@ -17,8 +17,10 @@
 \contentsline {figure}{\numberline {3.10}{\ignorespaces Datasheet của FR4-Tg135.}}{27}{figure.caption.19}%
 \contentsline {figure}{\numberline {3.11}{\ignorespaces Thông số độ điện thẩm và hằng số tổn hao.}}{27}{figure.caption.20}%
 \contentsline {figure}{\numberline {3.12}{\ignorespaces Các thông số kích thước đường dây sau khi chạy công cụ LineCalc.}}{28}{figure.caption.21}%
-\contentsline {figure}{\numberline {3.13}{\ignorespaces Các thông số kích thước của đầu SMA cái $13.5\,\textsf {mm}$.}}{29}{figure.caption.22}%
-\contentsline {figure}{\numberline {3.14}{\ignorespaces Schematic sau khi đã nhập thông số kích thước của microstrip.}}{29}{figure.caption.23}%
-\contentsline {figure}{\numberline {3.15}{\ignorespaces Kết quả mô phỏng.}}{30}{figure.caption.24}%
-\contentsline {figure}{\numberline {3.16}{\ignorespaces Layout của Coupled Line Directional Coupler.}}{31}{figure.caption.26}%
-\contentsline {figure}{\numberline {3.17}{\ignorespaces Kết quả sau khi chạy mô phỏng layout của Coupled Line Directional Coupler.}}{32}{figure.caption.27}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Schematic sau khi đã nhập thông số kích thước của microstrip.}}{29}{figure.caption.22}%
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Kết quả mô phỏng.}}{30}{figure.caption.23}%
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Layout của Coupled Line Directional Coupler.}}{31}{figure.caption.25}%
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Kết quả sau khi chạy mô phỏng layout của Coupled Line Directional Coupler.}}{32}{figure.caption.26}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces PCB tổng quát của mạch.}}{33}{figure.caption.28}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Hình ảnh 3D của mạch của một Sensor Node BLE.}}{34}{figure.caption.29}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Hình ảnh 3D của mạch của Directional Coupler.}}{35}{figure.caption.30}%

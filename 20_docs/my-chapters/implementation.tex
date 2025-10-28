@@ -150,7 +150,9 @@ Với thiết kế nhỏ gọn, tiêu thụ công suất thấp và có thể tr
 	}
 \end{lstlisting}
 
-\subsection{BLE}
+\subsubsection{BLE}
+
+\noindent\textbf{Tổng quan của chương trình}
 
 \lstinputlisting[style=StyleCode, language=C, caption={Code thực thi chính của BLE sensor node.}]{./my-chapters/my-refs/Code/code.c}
 
@@ -225,9 +227,9 @@ Với thiết kế nhỏ gọn, tiêu thụ công suất thấp và có thể tr
 	\end{lstlisting}
 \end{itemize}
 
-\subsubsection{Kiểm tra chương trình trên ESP32-C3-DevKitM-1}
+\noindent\textbf{Kiểm tra chương trình trên ESP32-C3-DevKitM-1}
 
-Nhóm em sử dụng DEVKIT V1 ESP32 để kiểm tra trước chương trình vì DEVKIT trên chip ESP32-C3. Nhóm em sử dung thêm phần mền \textbf{Serial Bluetooth Terminal} (\includegraphics[width=.03\linewidth]{./my-chapters/my-images/implementation/Ble/unnamed.png}) để kiểm tra dữ liệu gửi về smartphone. 
+Nhóm em sử dụng DEVKIT V1 ESP32 để kiểm tra trước chương trình vì DEVKIT trên chip ESP32-C3. Nhóm em sử dung thêm phần mền \textbf{BLE Scanner} (\includegraphics[width=.03\linewidth]{./my-chapters/my-images/implementation/Ble/unnamed.png}) để kiểm tra dữ liệu gửi về smartphone. 
 
 \begin{figure}[H]
 	\begin{minipage}{.5\linewidth}
@@ -263,7 +265,7 @@ Nhóm em sử dụng DEVKIT V1 ESP32 để kiểm tra trước chương trình v
 %từ đó tối ưu hoá \textbf{duty cycle} và kéo dài thời gian hoạt động của cảm biến.
 %
 
-\subsubsection{Sơ đồ khối của bộ BLE với chip ESP32-C3}
+\subsubsection{Sơ đồ mạch của một Sensor Node BLE sử dụng chip ESP32-C3}
 
 \begin{figure}[H]
 	\centering
@@ -342,18 +344,27 @@ Thông số của đường dây:
 %	\item Khoảng cách giữa 2 đường dây coupling: $\text{S} = 0.192303 \,\textsf{mm}$
 %\end{itemize}
 
-Ngoài ra, với kích thước của đầu SMA female như bên dưới, ta thiết kế thêm các đường dây TL5, 6, 7 và 8 để có thêm kích thước hàn các đầu SMA này vào board PCB:
+%Ngoài ra, với kích thước của đầu SMA female như bên dưới, ta thiết kế thêm các đường dây TL5, 6, 7 và 8 để có thêm kích thước hàn các đầu SMA này vào board PCB:
+%
+%\begin{figure}[H]
+%	\centering
+%	\includegraphics[width=.8\linewidth]{./my-chapters/my-images/implementation/coupler/thongsokichthuocdau.png}
+%	\caption{Các thông số kích thước của đầu SMA cái $13.5\,\textsf{mm}$.}
+%\end{figure}
 
-\begin{figure}[H]
-	\centering
-	\includegraphics[width=.8\linewidth]{./my-chapters/my-images/implementation/coupler/thongsokichthuocdau.png}
-	\caption{Các thông số kích thước của đầu SMA cái $13.5\,\textsf{mm}$.}
-\end{figure}
+Từ đó, ta có kích thước của đường dây microstrip coupling:
 
-Từ đó, nhóm chọn các thông số:
 \begin{itemize}[label=-]
-	\item Chiều rộng đường dây: $W = 0.841706 \,\textsf{mm}$
-	\item Chiều dài đường dây: $L = 7\,\textsf{mm}$
+	\item Chiều rộng đường dây: $\text{W} = 0.841706 \,\textsf{mm}$
+	\item Chiều dài của cặp dây coupling: $\text{L} = 17.7398\,\textsf{mm}$
+	\item Khoảng cách giữa 2 đường dây coupling: $\text{S} = 0.192303\,\textsf{mm}$
+\end{itemize}
+
+Thông số đường dây MLIN:
+
+\begin{itemize}[label=-]
+	\item Chiều rộng đường dây: $\text{W} = 0.841706 \,\textsf{mm}$
+	\item Chiều dài của đường dây: $\text{L} = 7\,\textsf{mm}$
 \end{itemize}
 
 \begin{figure}[H]
@@ -427,4 +438,4 @@ Sau khi hoàn thành layout, tiến hành chạy mô phỏng và kiểm tra kế
 	\label{tab:s_parameters_result}
 \end{table}
 
-Thiết kế layout đã tối ưu hóa thành công các tham số $S_{11}$ và $S_{14}$ so với mô hình schematic ban đầu. Mặc dù $S_{13}$ có độ lệch nhỏ, hiệu suất tổng thể của bộ ghép định hướng là rất tốt và đạt yêu cầu cho băng tần 2.4 GHz.
+%Thiết kế layout đã tối ưu hóa thành công các tham số $S_{11}$ và $S_{14}$ so với mô hình schematic ban đầu. Mặc dù $S_{13}$ có độ lệch nhỏ, hiệu suất tổng thể của bộ ghép định hướng là rất tốt và đạt yêu cầu cho băng tần 2.4 GHz.
