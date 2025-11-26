@@ -21,6 +21,7 @@
 \NameTime{../../20..}
 \NamePathBackground[width=\paperwidth,height=\paperheight]{./my-chapters/my-images/bia.jpg} 
 
+\renewcommand{\appendixname}{Phụ lục}
 
 \begin{document}
 	
@@ -74,11 +75,19 @@
 	\fancyhead[R]{GVHD: Dr. NGUYEN Van Hieu}
 	\fancyfoot[L]{\includegraphics[width=.02\linewidth]{./my-chapters/my-images/logo_DEE.png}\text{ Department of Telecommunications Engineering}}
 	\include{./my-chapters/overview.tex}
-%	\include{./my-chapters/theorical_background.tex}
+	\include{./my-chapters/theorical_background.tex}
 	\include{./my-chapters/implementation.tex}
 	\include{./my-chapters/results.tex}
 	
-	\addcontentsline{toc}{section}{Tài liệu tham khảo}%
+%	\section*{TÀI LIỆU THAM KHẢO}
+	\addcontentsline{toc}{section}{TÀI LIỆU THAM KHẢO}%
 	\bibliographystyle{ieeetr}%
 	\bibliography{my-bib/ref}%
+	
+	\appendix
+	\section*{PHỤ LỤC}
+	\addcontentsline{toc}{section}{PHỤ LỤC}
+	\subsection*{Phụ lục A: Mã nguồn}
+	\addcontentsline{toc}{subsection}{Phụ lục B: Mã nguồn}
+	\lstinputlisting[style=StyleCode, language=C, caption={Code thực thi chính của BLE sensor node.}]{./my-chapters/my-refs/Code/code.c}
 \end{document}

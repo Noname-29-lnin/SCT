@@ -170,10 +170,22 @@ Về phần mềm, ESP32-C3 được hỗ trợ bởi ESP-IDF, cung cấp sẵn 
 
 Directional coupler (bộ ghép định hướng) là một thành phần thụ động bốn cổng dùng để lấy mẫu (sample) năng lượng trên một đường truyền RF mà không làm nhiễu đáng kể tới đường truyền chính. Trong bối cảnh đề tài - giám sát và đo lường tín hiệu $2.4GHz$ của bộ phát BLE - dạng coupler thực thi chức năng cung cấp tín hiệu mẫu cho VNA, detector hoặc cho mạch Wake-Up Receiver, đồng thời cho phép đánh giá công suất truyền, phản sóng và phase. Phần tiếp theo trình bày những khái niệm lý thuyết cần thiết cho thiết kế microstrip coupled-line coupler, bao gồm nguyên lý hoạt động, tham số tán xạ và các đặc tính như coupling, isolation, insertion loss và phase mà nhóm tìm hiểu từ các tài liệu.
 
+%\begin{figure}[h]
+%	\centering
+%	\includegraphics[width=.8\linewidth]{./my-chapters/my-images/theoretical_background/coupler_directional.png}
+%	\caption{Các cấu hình của Directional Coupler: a) Ring directional coupler; b) Branch-line directional coupler (c) Coupled-line directional coupler; (d) Lange directional coupler; (e) Wilkinson power divider.}
+%\end{figure}
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=.8\linewidth]{./my-chapters/my-images/theoretical_background/coupler_directional.png}
-	\caption{Các cấu hình của Directional Coupler: a) Ring directional coupler; b) Branch-line directional coupler (c) Coupled-line directional coupler; (d) Lange directional coupler; (e) Wilkinson power divider.}
+	\caption[ Các cấu hình của Directional Coupler ]
+	{Các cấu hình của Directional Coupler: 
+		a) Ring directional coupler; 
+		b) Branch-line directional coupler; 
+		c) Coupled-line directional coupler; 
+		d) Lange directional coupler; 
+		e) Wilkinson power divider.
+	}
 \end{figure}
 
 \subsubsection{Nguyên lý vi dải và đường truyền song song (microstrip coupled-line)}

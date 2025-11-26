@@ -1,20 +1,36 @@
 \babel@toc {vietnamese}{}\relax 
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Hình ảnh cảu DHT11.}}{2}{figure.caption.1}%
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Typical Application.}}{3}{figure.caption.3}%
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Data "0" indication.}}{4}{figure.caption.6}%
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Data "1" indication.}}{4}{figure.caption.7}%
-\contentsline {figure}{\numberline {2.5}{\ignorespaces Hình ảnh thực tế và kết quả kiểm tra đoạn code trên DEVKIT.}}{9}{figure.caption.8}%
-\contentsline {figure}{\numberline {2.6}{\ignorespaces Schematic of a BLE node using ESP32-C3.}}{10}{figure.caption.9}%
-\contentsline {figure}{\numberline {2.7}{\ignorespaces Schematic sơ bộ của Coupled Line Directional Coupler.}}{12}{figure.caption.10}%
-\contentsline {figure}{\numberline {2.8}{\ignorespaces Giao diện của LineCalc.}}{13}{figure.caption.11}%
-\contentsline {figure}{\numberline {2.9}{\ignorespaces Quy chuẩn mạch in của Thiên Lam PCB.}}{14}{figure.caption.12}%
-\contentsline {figure}{\numberline {2.10}{\ignorespaces Datasheet của FR4-Tg135.}}{15}{figure.caption.13}%
-\contentsline {figure}{\numberline {2.11}{\ignorespaces Thông số độ điện thẩm và hằng số tổn hao.}}{15}{figure.caption.14}%
-\contentsline {figure}{\numberline {2.12}{\ignorespaces Các thông số kích thước đường dây sau khi chạy công cụ LineCalc.}}{16}{figure.caption.15}%
-\contentsline {figure}{\numberline {2.13}{\ignorespaces Schematic sau khi đã nhập thông số kích thước của microstrip.}}{17}{figure.caption.16}%
-\contentsline {figure}{\numberline {2.14}{\ignorespaces Kết quả mô phỏng.}}{18}{figure.caption.17}%
-\contentsline {figure}{\numberline {2.15}{\ignorespaces Layout của Coupled Line Directional Coupler.}}{19}{figure.caption.19}%
-\contentsline {figure}{\numberline {2.16}{\ignorespaces Kết quả sau khi chạy mô phỏng layout của Coupled Line Directional Coupler.}}{20}{figure.caption.20}%
-\contentsline {figure}{\numberline {3.1}{\ignorespaces PCB tổng quát của mạch.}}{21}{figure.caption.22}%
-\contentsline {figure}{\numberline {3.2}{\ignorespaces Hình ảnh 3D của mạch của một Sensor Node BLE.}}{22}{figure.caption.23}%
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Hình ảnh 3D của mạch của Directional Coupler.}}{23}{figure.caption.24}%
+\contentsline {figure}{\numberline {2.1}{\ignorespaces BLE channels.}}{2}{figure.caption.1}%
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Bluetooth LE stack architecture\cite {Reyes2024BLEStack}.}}{4}{figure.caption.2}%
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Link layer state transitions\cite {Reyes2024BLEStack}.}}{5}{figure.caption.3}%
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Sơ đồ khối cấu trúc tổng quan của ESP32-C3\cite {Mischianti2024ESP32C3}.}}{7}{figure.caption.4}%
+\contentsline {figure}{\numberline {2.5}{\ignorespaces Các cấu hình của Directional Coupler }}{9}{figure.caption.5}%
+\contentsline {figure}{\numberline {2.6}{\ignorespaces Cấu trúc của Directional Coupler.}}{10}{figure.caption.6}%
+\contentsline {figure}{\numberline {3.1}{\ignorespaces Hình ảnh cảu DHT11.}}{14}{figure.caption.7}%
+\contentsline {figure}{\numberline {3.2}{\ignorespaces Typical Application.}}{15}{figure.caption.9}%
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Data "0" indication.}}{16}{figure.caption.12}%
+\contentsline {figure}{\numberline {3.4}{\ignorespaces Data "1" indication.}}{16}{figure.caption.13}%
+\contentsline {figure}{\numberline {3.5}{\ignorespaces Hình ảnh thực tế và kết quả kiểm tra đoạn code trên DEVKIT.}}{19}{figure.caption.14}%
+\contentsline {figure}{\numberline {3.6}{\ignorespaces Schematic of a BLE node using ESP32-C3.}}{20}{figure.caption.15}%
+\contentsline {figure}{\numberline {3.7}{\ignorespaces Schematic sơ bộ của Coupled Line Directional Coupler.}}{22}{figure.caption.16}%
+\contentsline {figure}{\numberline {3.8}{\ignorespaces Giao diện của LineCalc.}}{23}{figure.caption.17}%
+\contentsline {figure}{\numberline {3.9}{\ignorespaces Quy chuẩn mạch in của Thiên Lam PCB.}}{24}{figure.caption.18}%
+\contentsline {figure}{\numberline {3.10}{\ignorespaces Phíp đồng FR4.}}{25}{figure.caption.19}%
+\contentsline {figure}{\numberline {3.11}{\ignorespaces Datasheet của FR4-Tg135.}}{25}{figure.caption.20}%
+\contentsline {figure}{\numberline {3.12}{\ignorespaces Thông số độ điện thẩm và hằng số tổn hao.}}{26}{figure.caption.21}%
+\contentsline {figure}{\numberline {3.13}{\ignorespaces Các thông số kích thước đường dây sau khi chạy công cụ LineCalc.}}{26}{figure.caption.22}%
+\contentsline {figure}{\numberline {3.14}{\ignorespaces Schematic sau khi đã nhập thông số kích thước của microstrip.}}{27}{figure.caption.23}%
+\contentsline {figure}{\numberline {3.15}{\ignorespaces Kết quả mô phỏng.}}{28}{figure.caption.24}%
+\contentsline {figure}{\numberline {3.16}{\ignorespaces Layout của Coupled Line Directional Coupler.}}{29}{figure.caption.26}%
+\contentsline {figure}{\numberline {3.17}{\ignorespaces Thông số mô phỏng cho substrate của PCB.}}{29}{figure.caption.27}%
+\contentsline {figure}{\numberline {3.18}{\ignorespaces Kết quả sau khi chạy mô phỏng layout của Coupled Line Directional Coupler.}}{30}{figure.caption.28}%
+\contentsline {figure}{\numberline {3.19}{\ignorespaces Schematic với các công cụ Optimization.}}{31}{figure.caption.30}%
+\contentsline {figure}{\numberline {3.20}{\ignorespaces Khối VAR tạo các biến.}}{31}{figure.caption.31}%
+\contentsline {figure}{\numberline {3.21}{\ignorespaces Khối GOAL đặt mục tiêu cần đạt được sau tối ưu.}}{32}{figure.caption.32}%
+\contentsline {figure}{\numberline {3.22}{\ignorespaces Khối OPTIM để thực hiện quá trình tối ưu.}}{33}{figure.caption.33}%
+\contentsline {figure}{\numberline {3.23}{\ignorespaces Kết quả sau khi tối ưu hóa.}}{34}{figure.caption.34}%
+\contentsline {figure}{\numberline {3.24}{\ignorespaces Kết quả mô phỏng Schematic sau khi tối ưu hóa.}}{35}{figure.caption.35}%
+\contentsline {figure}{\numberline {3.25}{\ignorespaces Layout với các thông số kích thước tối ưu hoá.}}{36}{figure.caption.37}%
+\contentsline {figure}{\numberline {3.26}{\ignorespaces Kết quả mô phỏng Layout sau khi tối ưu hoá.}}{37}{figure.caption.38}%
+\contentsline {figure}{\numberline {4.1}{\ignorespaces PCB tổng quát của mạch.}}{38}{figure.caption.40}%
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Hình ảnh 3D của mạch của một Sensor Node BLE.}}{39}{figure.caption.41}%
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Hình ảnh 3D của mạch của Directional Coupler.}}{40}{figure.caption.42}%

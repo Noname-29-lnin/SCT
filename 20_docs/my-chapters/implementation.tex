@@ -8,7 +8,7 @@ Nhóm sử dụng \textbf{DHT11 Humidity \& Temperature Sensor} cho Node. Với 
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.4\linewidth]{./my-chapters/my-images/implementation/Node/DHT11_picture.png}
+	\includegraphics[width=.3\linewidth]{./my-chapters/my-images/implementation/Node/DHT11_picture.png}
 	\caption{Hình ảnh cảu DHT11.}
 \end{figure}
 
@@ -94,7 +94,7 @@ Với thiết kế nhỏ gọn, tiêu thụ công suất thấp và có thể tr
 
 \begin{figure}[H]
 	\centering
-	\includegraphics[width=.8\linewidth]{./my-chapters/my-images/implementation/Node/DHT11_connect.png}
+	\includegraphics[width=.6\linewidth]{./my-chapters/my-images/implementation/Node/DHT11_connect.png}
 	\caption{Typical Application.}
 \end{figure}
 
@@ -120,12 +120,12 @@ Với thiết kế nhỏ gọn, tiêu thụ công suất thấp và có thể tr
 	\item DHT Responses to MCU: Khi DHT nhận được tín hiệu start, nó sẽ gửi lại một tín hiệu xác nhận low-voltage-level với khoảng $18ms$. Sau đó, chương trình của DHT đặt mức điện áp của đường dữ liệu đơn từ thấp lên cao và giữ trong $80us$ để DHT chuẩn bị gửi dữ liệu.
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=.6\linewidth]{./my-chapters/my-images/implementation/Node/data_0_indications.png}
+			\includegraphics[width=.4\linewidth]{./my-chapters/my-images/implementation/Node/data_0_indications.png}
 			\caption{Data "0" indication.}
 		\end{figure}
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=.6\linewidth]{./my-chapters/my-images/implementation/Node/data_1_indications.png}
+			\includegraphics[width=.4\linewidth]{./my-chapters/my-images/implementation/Node/data_1_indications.png}
 			\caption{Data "1" indication.}
 		\end{figure}
 \end{itemize}
@@ -154,7 +154,7 @@ Với thiết kế nhỏ gọn, tiêu thụ công suất thấp và có thể tr
 
 \noindent\textbf{Tổng quan của chương trình}
 
-\lstinputlisting[style=StyleCode, language=C, caption={Code thực thi chính của BLE sensor node.}]{./my-chapters/my-refs/Code/code.c}
+%\lstinputlisting[style=StyleCode, language=C, caption={Code thực thi chính của BLE sensor node.}]{./my-chapters/my-refs/Code/code.c}
 
 \begin{itemize}[label=-]
 	\item \textbf{Advertising BLE:}
@@ -302,7 +302,13 @@ Sử dụng công cụ LineCalc để tiến hành tính toán các thông số 
 	\caption{Quy chuẩn mạch in của Thiên Lam PCB.}
 \end{figure}
 
-Có thể thấy Thiên Lam PCB sử dụng vật liệu PCB là FR-4 Tg135/140/155/170 với các số thể hiện nhiệt độ mà PCB chịu đựng được. Nhóm sẽ chọn FR-4 Tg135 cho dự án này.
+Có thể thấy Thiên Lam PCB sử dụng vật liệu PCB là FR-4 Tg135/140/155/170 với các số thể hiện nhiệt độ mà PCB chịu đựng được. Nhóm sử dụng phíp đồng FR4 độ dày 1.5mm để thực hiện PCB cho Coupler:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.4\linewidth]{./my-chapters/my-images/implementation/coupler/phipdong_fp4.png}
+	\caption{Phíp đồng FR4.}
+\end{figure}
 
 \begin{figure}[H]
 	\centering
@@ -318,7 +324,9 @@ Trong datasheet này, ta chú ý 2 thông số:
 	\caption{Thông số độ điện thẩm và hằng số tổn hao.}
 \end{figure}
 
-Từ datasheet, nhóm sẽ chọn giá trị $Er=4.6$ và $TanD=0.002$ cho dự án này. Sau vài lần mô phỏng, tinh chỉnh thông số cho phù hợp dựa trên phần mềm tính toán, nhóm quyết định chọn các thông số cho đường dây như bên dưới:
+Từ datasheet, với độ dày của board PCB là $1.5\,\textsf{mm}$ nên nhóm sẽ chọn giá trị $Er=4.8$ và $TanD=0.02$.
+
+Sau đó, sử dụng công cụ LineCalc của ADS để thực hiện tính toán kích thước của đường dây microstrip cho Coupler:
 
 \begin{figure}[H]
 	\centering
@@ -328,42 +336,27 @@ Từ datasheet, nhóm sẽ chọn giá trị $Er=4.6$ và $TanD=0.002$ cho dự 
 
 Thông số của đường dây:
 \begin{itemize}[label=-]
-	\item Độ điện thẩm: $\text{Er}=4.6$
+	\item Độ điện thẩm: $\text{Er}=4.8$
 	\item Độ dày của bo mạch PCB: $\text{H}=0.6\,\textsf{mm}$
 	\item Độ dày của đường microtrip: $\text{T}=35\mu m$
 	\item Độ dẫn điện của mircotrip: $\text{Coud} = 5.8 \times 10^{7} \,\textsf{S/m}$ (Đối với microtrip là đồng)
-	\item Hệ số tổn hao: $\text{TanD} = 0.002$
+	\item Hệ số tổn hao: $\text{TanD} = 0.02$
 	\item Điện trở của đường dây: $Z_{0} = 50\Omega$
 	\item Hệ số Coupling: $C=-10dB$ (để lấy ra $1/10$ công suất ngõ vào làm tín hiệu)
 \end{itemize}
 
-%Từ đó, ta có kích thước của đường dây microtrip coupling:
-%\begin{itemize}[label=-]
-%	\item Độ rộng của dây: $\text{W} = 0.841706 \,\textsf{mm}$
-%	\item Độ dài của cặp đường dây coupling: $\text{L} = 17.7398 \,\textsf{mm}$
-%	\item Khoảng cách giữa 2 đường dây coupling: $\text{S} = 0.192303 \,\textsf{mm}$
-%\end{itemize}
-
-%Ngoài ra, với kích thước của đầu SMA female như bên dưới, ta thiết kế thêm các đường dây TL5, 6, 7 và 8 để có thêm kích thước hàn các đầu SMA này vào board PCB:
-%
-%\begin{figure}[H]
-%	\centering
-%	\includegraphics[width=.8\linewidth]{./my-chapters/my-images/implementation/coupler/thongsokichthuocdau.png}
-%	\caption{Các thông số kích thước của đầu SMA cái $13.5\,\textsf{mm}$.}
-%\end{figure}
-
 Từ đó, ta có kích thước của đường dây microstrip coupling:
 
 \begin{itemize}[label=-]
-	\item Chiều rộng đường dây: $\text{W} = 0.841706 \,\textsf{mm}$
-	\item Chiều dài của cặp dây coupling: $\text{L} = 17.7398\,\textsf{mm}$
-	\item Khoảng cách giữa 2 đường dây coupling: $\text{S} = 0.192303\,\textsf{mm}$
+	\item Chiều rộng đường dây: $\text{W} = 2.20687 \,\textsf{mm}$
+	\item Chiều dài của cặp dây coupling: $\text{L} = 17.0518\,\textsf{mm}$
+	\item Khoảng cách giữa 2 đường dây coupling: $\text{S} = 0.346391\,\textsf{mm}$
 \end{itemize}
 
 Thông số đường dây MLIN:
 
 \begin{itemize}[label=-]
-	\item Chiều rộng đường dây: $\text{W} = 0.841706 \,\textsf{mm}$
+	\item Chiều rộng đường dây: $\text{W} = 2.20687 \,\textsf{mm}$
 	\item Chiều dài của đường dây: $\text{L} = 7\,\textsf{mm}$
 \end{itemize}
 
@@ -391,10 +384,10 @@ Sau đó, tiến hành chạy mô phỏng và kiểm tra kết quả:
 			|>{\centering\arraybackslash}m{3cm}|}
 		\hline
 		\textbf{Thông số} 	& \textbf{Kì vọng} 				& \textbf{Đạt được} 		& \textbf{Đánh giá} \\ \hline
-		$S_{11}$ 			& Nhỏ hơn $-20 \,\textsf{dB}$	& $-20.557 	\,\textsf{dB}$ 	& Đạt \\ \hline
-		$S_{12}$ 			& Lớn hơn $-1 \,\textsf{dB}$ 	& $-0.530 	\,\textsf{dB}$	& Đạt \\ \hline
-		$S_{13}$ 			& Gần bằng $-10 \,\textsf{dB}$ 	& $-10.518	\,\textsf{dB}$	& Đạt \\ \hline
-		$S_{14}$ 			& Nhỏ hơn $-20 \,\textsf{dB}$	& $-23.669  \,\textsf{dB}$	& Đạt \\ \hline
+		$S_{11}$ 			& Nhỏ hơn $-20 \,\textsf{dB}$	& $-15.806 dB\,\textsf{dB}$ 	& Chưa đạt \\ \hline
+		$S_{12}$ 			& Lớn hơn $-1 \,\textsf{dB}$ 	& $-0.584\,\textsf{dB}$	& Đạt \\ \hline
+		$S_{13}$ 			& Gần bằng $-10 \,\textsf{dB}$ 	& $-10.649 \,\textsf{dB}$	& Đạt \\ \hline
+		$S_{14}$ 			& Nhỏ hơn $-20 \,\textsf{dB}$	& $-23.589 \,\textsf{dB}$	& Đạt \\ \hline
 	\end{tabular}
 	\caption{Bảng so sánh thông số đo được và kì vọng khi mô phỏng Coupled line Directional Coupler.}
 	\label{tab:s_parameters}
@@ -415,6 +408,12 @@ Sau khi hoàn thành layout, tiến hành chạy mô phỏng và kiểm tra kế
 
 \begin{figure}[H]
 	\centering
+	\includegraphics[width=.9\linewidth]{./my-chapters/my-images/implementation/coupler/substrate_pcb.png}
+	\caption{Thông số mô phỏng cho substrate của PCB.}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
 	\includegraphics[width=.8\linewidth]{./my-chapters/my-images/implementation/coupler/ketquamophong_layout.png}
 	\caption{Kết quả sau khi chạy mô phỏng layout của Coupled Line Directional Coupler.}
 \end{figure}
@@ -429,13 +428,114 @@ Sau khi hoàn thành layout, tiến hành chạy mô phỏng và kiểm tra kế
 			|>{\centering\arraybackslash}m{3cm}|}
 		\hline
 		\textbf{Thông số} 	& \textbf{Kì vọng} 				& \textbf{Đạt được} 		& \textbf{Đánh giá} \\ \hline
-		$S_{11}$ 			& Nhỏ hơn $-20 \,\textsf{dB}$	& $-36.989  \,\textsf{dB}$ 	& Đạt \\ \hline
-		$S_{12}$ 			& Lớn hơn $-1 \,\textsf{dB}$ 	& $-0.469 	\,\textsf{dB}$	& Đạt \\ \hline
-		$S_{13}$ 			& Gần bằng $-10 \,\textsf{dB}$ 	& $-11.269 	\,\textsf{dB}$	& Gần đạt \\ \hline
-		$S_{14}$ 			& Nhỏ hơn $-20 \,\textsf{dB}$	& $-25.939	\,\textsf{dB}$	& Đạt \\ \hline
+		$S_{11}$ 			& Nhỏ hơn $-20 \,\textsf{dB}$	& $-35.478 \,\textsf{dB}$ 	& Đạt \\ \hline
+		$S_{12}$ 			& Lớn hơn $-1 \,\textsf{dB}$ 	& $-0.681 \,\textsf{dB}$	& Đạt \\ \hline
+		$S_{13}$ 			& Gần bằng $-10 \,\textsf{dB}$ 	& $-11.675 \,\textsf{dB}$	& Gần đạt \\ \hline
+		$S_{14}$ 			& Nhỏ hơn $-20 \,\textsf{dB}$	& $-27.852 \,\textsf{dB}$	& Đạt \\ \hline
 	\end{tabular}
 		\caption{Bảng so sánh thông số đo được và kì vọng sau khi chạy mô phỏng layout của Coupled Line Directional Coupler.}
 	\label{tab:s_parameters_result}
 \end{table}
 
-%Thiết kế layout đã tối ưu hóa thành công các tham số $S_{11}$ và $S_{14}$ so với mô hình schematic ban đầu. Mặc dù $S_{13}$ có độ lệch nhỏ, hiệu suất tổng thể của bộ ghép định hướng là rất tốt và đạt yêu cầu cho băng tần 2.4 GHz.
+Qua 2 kết quả mô phỏng trên, ta thấy đư	ợc các thông số khi sử dụng LineCalc chưa được tối ưu, khi vẫn còn các thông số chưa đạt kì vọng. Do đó, ta sử dụng 1 công cụ khác của ADS để đạt được các thông số kì vọng mà ta đặt ra, đó là công cụ Optimization:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.9\linewidth]{./my-chapters/my-images/implementation/coupler/schematic_optimizetion.png}
+	\caption{Schematic với các công cụ Optimization.}
+\end{figure}
+
+Đầu tiên, ta sử dụng khối VAR để tạo ra các biến mà ADS được phép thay đổi trong quá trình quá trình tối ưu. Các biến này được khai báo bao gồm giá trị khởi tạo và giới hạn trên/dưới, và sẽ đặt giá trị ban đầu theo thông số tính toán của LineCalc:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.7\linewidth]{./my-chapters/my-images/implementation/coupler/khoi_VAR.png}
+	\caption{Khối VAR tạo các biến.}
+\end{figure}
+
+Tiếp theo là khối GOAL để đặt các mục tiêu mà mạch cần đạt được sau khi tối ưu. Ta sẽ đặt các thông số kì vọng như các kết quả mô phỏng ở trên:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.7\linewidth]{./my-chapters/my-images/implementation/coupler/khoi_global.png}
+	\caption{Khối GOAL đặt mục tiêu cần đạt được sau tối ưu.}
+\end{figure}
+
+Sau khi thiết lập biến và mục tiêu, khối OPTIM được thêm vào để lựa chọn thuật toán tối ưu phù hợp. Trong sơ đồ mô phỏng bên dưới, khối OPTIM được cấu hình để thực hiện quá trình tối ưu hóa bằng thuật toán Random Optimization. Tham số $MaxIters = 3000$ cho phép bộ tối ưu thực hiện tối đa $3000$ vòng lặp nhằm tìm ra bộ giá trị tốt nhất cho các biến tối ưu.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.7\linewidth]{./my-chapters/my-images/implementation/coupler/khoi_OPTIM.png}
+	\caption{Khối OPTIM để thực hiện quá trình tối ưu.}
+\end{figure}
+
+Sau khi thiết lập xong các công cụ Optimization, ta tiến hành thực hiện tối ưu hoá, tìm ra các thông số tính toán tối ưu nhất để đạt mục tiêu kì vọng:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.9\linewidth]{./my-chapters/my-images/implementation/coupler/after_optimazition.png}
+	\caption{Kết quả sau khi tối ưu hóa.}
+\end{figure}
+
+Tiếp theo, ta tiến hành Update Design để cập nhật các thông số kích thước mới vào Schematic:
+
+\begin{itemize}[label=-]
+	\item $W = 1.24113\,\textsf{mm}$
+	\item $S = 0.343546\,\textsf{mm}$
+	\item $L_{1} = 13.1255\,\textsf{mm}$
+	\item $L_{2} =  8.83809\,\textsf{mm}$
+\end{itemize}
+
+Kết quả mô phỏng Schematic sau khi tối ưu hoá:
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.9\linewidth]{./my-chapters/my-images/implementation/coupler/ketqua_schemati_optimizetion.png}
+	\caption{Kết quả mô phỏng Schematic sau khi tối ưu hóa.}
+\end{figure}
+
+\textbf{Đánh giá kết quả:}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|>{\centering\arraybackslash}m{2.5cm}
+			|>{\raggedright\arraybackslash}m{3.5cm}
+			|>{\centering\arraybackslash}m{3cm}
+			|>{\centering\arraybackslash}m{3cm}|}
+		\hline
+		\textbf{Thông số} 	& \textbf{Kì vọng} 				& \textbf{Đạt được} 		& \textbf{Đánh giá} \\ \hline
+		$S_{11}$ 			& Nhỏ hơn $-20 \,\textsf{dB}$	& $-20.113 \,\textsf{dB}$ 	& Đạt \\ \hline
+		$S_{12}$ 			& Lớn hơn $-1 \,\textsf{dB}$ 	& $-0.904 \,\textsf{dB}$	& Đạt \\ \hline
+		$S_{13}$ 			& Gần bằng $-10 \,\textsf{dB}$ 	& $-9.369 \,\textsf{dB}$	& Chấp nhận được\\ \hline
+		$S_{14}$ 			& Nhỏ hơn $-20 \,\textsf{dB}$	& $-21.003 \,\textsf{dB}$	& Đạt \\ \hline
+	\end{tabular}
+	\caption{Bảng so sánh thông số đo được và kì vọng khi mô phỏng Coupled line Directional Coupler sau khi Optimization.}
+\end{table}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.9\linewidth]{./my-chapters/my-images/implementation/coupler/layout_coupler_optimazition.png}
+	\caption{Layout với các thông số kích thước tối ưu hoá.}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=.9\linewidth]{./my-chapters/my-images/implementation/coupler/ketqua_layout_optimizetion.png}
+	\caption{Kết quả mô phỏng Layout sau khi tối ưu hoá.}
+\end{figure}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|>{\centering\arraybackslash}m{2.5cm}
+			|>{\raggedright\arraybackslash}m{3.5cm}
+			|>{\centering\arraybackslash}m{3cm}
+			|>{\centering\arraybackslash}m{3cm}|}
+		\hline
+		\textbf{Thông số} 	& \textbf{Kì vọng} 				& \textbf{Đạt được} 		& \textbf{Đánh giá} \\ \hline
+		$S_{11}$ 			& Nhỏ hơn $-20 \,\textsf{dB}$	& $-24.784 \,\textsf{dB}$ 	& Đạt \\ \hline
+		$S_{12}$ 			& Lớn hơn $-1 \,\textsf{dB}$ 	& $-0.863 \,\textsf{dB}$	& Đạt \\ \hline
+		$S_{13}$ 			& Gần bằng $-10 \,\textsf{dB}$ 	& $-10.089 \,\textsf{dB}$	& Đạt \\ \hline
+		$S_{14}$ 			& Nhỏ hơn $-20 \,\textsf{dB}$	& $-21.347 \,\textsf{dB}$	& Đạt \\ \hline
+	\end{tabular}
+	\caption{Bảng so sánh thông số đo được và kì vọng sau khi chạy mô phỏng layout của Coupled Line Directional Coupler sau khi Optimization.}
+\end{table}

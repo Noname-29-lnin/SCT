@@ -5,24 +5,24 @@
 #include <BLE2902.h>
 #include <DHT.h>
 #include "esp_sleep.h"
-#include "driver/rtc_io.h" // RTC pin library
+#include "driver/rtc_io.h" // Thư viện cho RTC pin
 
-// ------------------- TIME CONFIGURATION -------------------
-// (Extended to give you comfortable connection time)
-#define CONNECTION_TIMEOUT 60000  // 60 seconds waiting for connection
-#define LIVE_DURATION 60000       // 60 seconds active time AFTER connection
-#define SENSOR_READ_INTERVAL 5000 // Send sensor data every 5 seconds
+// ------------------- CẤU HÌNH THỜI GIAN ------------------
+// (ĐÃ TĂNG THỜI GIAN CHỜ CHO BẠN KẾT NỐI THOẢI MÁI)
+#define CONNECTION_TIMEOUT 60000  // 60 giây chờ kết nối
+#define LIVE_DURATION 60000       // 60 giây "sống" SAU KHI kết nối
+#define SENSOR_READ_INTERVAL 5000 // Gửi dữ liệu mỗi 5 giây
 
 // ------------------- DHT11 Configuration ------------------
-// (Keep the same according to your wiring)
+// (Giữ nguyên theo sơ đồ chân của bạn)
 #define DHTPIN 4                  
 #define DHTTYPE DHT11
 DHT dht(DHTPIN, DHTTYPE);
 
 // ------------------- GPIO Configuration -------------------
-// (Keep the same according to your wiring)
-#define LED_PIN 2                 // On-board blue LED (P2)
-#define BUTTON_PIN GPIO_NUM_33    // Wake-up button (P33)
+// (Giữ nguyên theo sơ đồ chân của bạn)
+#define LED_PIN 2                 // LED xanh tích hợp (P2)
+#define BUTTON_PIN GPIO_NUM_33    // Nút bấm wakeup (P33)
 
 // ------------------- BLE Configuration --------------------
 #define SERVICE_UUID "4fafc201-1fb5-459e-8fcc-c5c9c331914b"
@@ -32,7 +32,7 @@ BLECharacteristic *pCharacteristicTX;
 bool deviceConnected = false;
 
 // ------------------- BLE Server Callback ------------------
-// (Unchanged, this code is correct)
+// (Giữ nguyên, code này đã đúng)
 class MyServerCallbacks : public BLEServerCallbacks {
   void onConnect(BLEServer *pServer) override {
     deviceConnected = true;
@@ -48,8 +48,8 @@ class MyServerCallbacks : public BLEServerCallbacks {
   }
 };
 
-// --- SUPPORT FUNCTION: Read and Send Sensor Data ---
-// (Unchanged, this code is correct)
+// --- HÀM HỖ TRỢ: Đọc và Gửi Dữ liệu Cảm biến ---
+// (Giữ nguyên, code này đã đúng)
 void readAndSendSensorData() {
   if (!deviceConnected) return; 
 
@@ -57,7 +57,7 @@ void readAndSendSensorData() {
   float humidity = dht.readHumidity();
 
   if (isnan(temperature) || isnan(humidity)) {
-    Serial.println("[ERROR] Failed to read DHT sensor!");
+    Serial.println("[ERROR] Failed to read from DHT sensor!");
     pCharacteristicTX->setValue("Sensor Error!");
   } else {
     char sensorData[60];
@@ -72,7 +72,7 @@ void readAndSendSensorData() {
 }
 
 // ------------------- Setup -------------------
-// (Unchanged, this code is correct)
+// (Giữ nguyên, code này đã đúng)
 void setup() {
   Serial.begin(115200);
   pinMode(LED_PIN, OUTPUT);
@@ -101,54 +101,57 @@ void setup() {
   Serial.println("[BLE] Advertising started...");
 }
 
-// ------------------- Loop (FIXED VERSION) -------------------
+// ------------------- Loop (ĐÃ SỬA LỖI 147) -------------------
 void loop() {
   
-  // --- STEP 1: WAIT FOR CONNECTION ---
+  // --- BƯỚC 1: CHỜ KẾT NỐI ---
   Serial.print("[SYSTEM] Waiting for BLE connection (Timeout: ");
   Serial.print(CONNECTION_TIMEOUT / 1000);
   Serial.println("s)");
   
   unsigned long waitStartTime = millis();
   
-  // ----- FIX FOR ISSUE #147 -----
-  // Variables used for LED blinking (non-blocking)
+  // ----- PHẦN FIX LỖI 147 -----
+  // Các biến này dùng để nhấp nháy LED mà không dùng delay()
   unsigned long lastBlinkTime = 0;
   bool ledState = false;
 
-  // Loop runs continuously without delay(250)
+  // Vòng lặp này sẽ chạy liên tục, không bị delay(250) nữa
   while (!deviceConnected && (millis() - waitStartTime < CONNECTION_TIMEOUT)) {
     
-    // Non-blocking LED blink logic
+    // Logic nhấp nháy LED mới (không-chặn)
     if (millis() - lastBlinkTime > 250) {
       lastBlinkTime = millis();
       ledState = !ledState;
       digitalWrite(LED_PIN, ledState);
     }
     
-    // IMPORTANT:
-    // Give CPU time for background tasks (e.g., BLE)
+    // RẤT QUAN TRỌNG:
+    // Nhường CPU cho các tác vụ nền (như BLE) xử lý.
+    // Nếu không có dòng này, BLE cũng có thể bị treo.
     delay(10); 
   }
-  // ----- END FIX -----
+  // ----- KẾT THÚC PHẦN FIX -----
 
-  // --- STEP 2: CONNECTION HANDLING ---
+
+  // --- BƯỚC 2: XỬ LÝ KẾT QUẢ ---
   if (deviceConnected) {
-    // --- CONNECTED, STAY ALIVE ---
-    Serial.print("[SYSTEM] Connected. Staying active for ");
+    // --- ĐÃ KẾT NỐI, GIỮ "SỐNG" ---
+    Serial.print("[SYSTEM] Connected. Staying live for ");
     Serial.print(LIVE_DURATION / 1000);
     Serial.println("s...");
-    digitalWrite(LED_PIN, HIGH); // Keep LED ON
+    digitalWrite(LED_PIN, HIGH); // Giữ LED sáng
 
     unsigned long liveStartTime = millis();
-    
-    // FIX: delay first sensor reading by 5s after connection
+    // FIX LỖI CRASH:
+    // Đặt lastSensorReadTime = millis() để nó chờ 5s sau khi kết nối
+    // rồi mới gửi dữ liệu, thay vì gửi ngay lập tức.
     unsigned long lastSensorReadTime = millis(); 
 
     while (millis() - liveStartTime < LIVE_DURATION) {
       
       if (!deviceConnected) {
-        Serial.println("[SYSTEM] Disconnected during active period.");
+        Serial.println("[SYSTEM] Disconnected during live period.");
         break; 
       }
 
@@ -157,18 +160,19 @@ void loop() {
         readAndSendSensorData(); 
       }
       
-      delay(100); // Small delay to allow BLE stack processing
+      delay(100); // Delay nhỏ để ESP32 "thở" và xử lý BLE
     }
     
-    Serial.println("[SYSTEM] Active period finished.");
+    Serial.println("[SYSTEM] Live period finished.");
 
   } else {
-    // --- TIMEOUT WITHOUT CONNECTION ---
+    // --- HẾT GIỜ MÀ KHÔNG KẾT NỐI ---
     Serial.println("[SYSTEM] Connection timeout.");
   }
 
-  // --- STEP 3: ENTER DEEP SLEEP ---
-  Serial.println("[SYSTEM] Entering deep sleep...");
+  // --- BƯỚC 3: ĐI NGỦ ---
+  // (Giữ nguyên, code này đã đúng)
+  Serial.println("[SYSTEM] Going to deep sleep...");
 
   rtc_gpio_pullup_en(BUTTON_PIN);
   rtc_gpio_pulldown_dis(BUTTON_PIN);
