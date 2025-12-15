@@ -1,0 +1,53 @@
+Begin_Block  Header 
+  
+  Mode  ASCII 
+  File_Name  E:/Documents/ADS/Directional_Coupler/simulation/Directional_Coupler_lib/Coupled_Line_Directional_Coupler/layout/emSetup_viz3D/EMDS4ADS.prf 
+  Version  3.00 
+  
+End_Block  Header 
+
+Begin_Block  Data 
+  
+  Begin_Preferences 
+  
+  Begin_Material_Block 
+  Material cond     1.0000000000000000e+00      0.0000000000000000e+00      0.0000000000000000e+00  
+  Material __SubstrateLayer1     1.0000000000000000e+00      0.0000000000000000e+00      1.0000000000000000e+00  
+  Material __BOTTOM     0.0000000000000000e+00      0.0000000000000000e+00      1.0000000000000000e+00  
+  End_Material_Block 
+  
+  Begin_Color_Block 
+  Object __SubstrateLayer1_1     1.0000000000000000e+00      0.0000000000000000e+00      1.0000000000000000e+00  
+  Object cond_3     1.0000000000000000e+00      0.0000000000000000e+00      0.0000000000000000e+00  
+  Object cond_4     1.0000000000000000e+00      0.0000000000000000e+00      0.0000000000000000e+00  
+  Object __BOTTOM_2     0.0000000000000000e+00      0.0000000000000000e+00      1.0000000000000000e+00  
+  End_Color_Block 
+  
+  Begin_Visible_Block 
+  Object __SubstrateLayer1_1 1  1  80  
+  Object cond_3 1  1  50  
+  Object cond_4 1  1  50  
+  Object __BOTTOM_2 1  1  50  
+  End_Visible_Block 
+  
+  Begin_Plane_Block 
+  Planes 0  
+  End_Plane_Block 
+  
+  Begin_Camera_Block 
+  Position     1.0260035514831543e+01      4.8870742797851563e+01      7.2165519714355469e+01  
+  Target     7.7782001495361328e+00     -1.2092499732971191e+00      7.6749998331069946e-01  
+  Up     1.4254599809646606e-01     -8.1264781951904297e-01      5.6505244970321655e-01  
+      3.4898345947265625e+01      3.4898345947265625e+01  
+  End_Camera_Block 
+  
+  Begin_Background_Block 
+  Top_Color     0.0000000000000000e+00      0.0000000000000000e+00      0.0000000000000000e+00  
+  Bottom_Color     0.0000000000000000e+00      0.0000000000000000e+00      0.0000000000000000e+00  
+  Shadow 0  
+  End_Background_Block 
+  
+  End_Preferences 
+  
+End_Block  Data 
+

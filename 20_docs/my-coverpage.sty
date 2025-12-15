@@ -76,6 +76,14 @@
     }%
   }%
 }
+\newcommand{\CoverBackground}[2][]{%
+	\AddToShipoutPictureBG*{%
+		\AtPageLowerLeft{%
+			\includegraphics[#1]{#2}%
+		}%
+	}%
+}
+
 
 \newcommand{\@NamePlace}{Ho Chi Minh City}
 \newcommand{\NamePlace}[1]{\renewcommand{\@NamePlace}{#1}}

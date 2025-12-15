@@ -1,0 +1,52 @@
+; Top Design: "Directional_Coupler_lib:Coupled_Line_Directional_Coupler:schematic"
+; Netlisted using Hierarchy Policy: "Standard"
+
+Options ResourceUsage=yes UseNutmegFormat=no EnableOptim=no TopDesignName="Directional_Coupler_lib:Coupled_Line_Directional_Coupler:schematic" DcopOutputNodeVoltages=yes DcopOutputPinCurrents=yes DcopOutputAllSweepPoints=no DcopOutputDcopType=0
+Port:TermG1  N__11 0 Num=1 Z=50 Ohm Noise=yes 
+Port:TermG2  N__6 0 Num=2 Z=50 Ohm Noise=yes 
+Port:TermG3  N__8 0 Num=3 Z=50 Ohm Noise=yes 
+Port:TermG4  N__0 0 Num=4 Z=50 Ohm Noise=yes 
+S_Param:SP1 CalcS=yes CalcY=no CalcZ=no GroupDelayAperture=1e-4 FreqConversion=no FreqConversionPort=1 StatusLevel=2 CalcNoise=no SortNoise=0 BandwidthForNoise=1.0 Hz DevOpPtLevel=0 \
+SweepVar="freq" SweepPlan="SP1_stim" OutputPlan="SP1_Output" 
+
+SweepPlan: SP1_stim Start=1 GHz Stop=5 GHz Lin=300 
+
+OutputPlan:SP1_Output \
+      Type="Output" \
+      UseEquationNestLevel=yes \
+      EquationNestLevel=2 \
+      UseSavedEquationNestLevel=yes \
+      SavedEquationNestLevel=2
+
+#load "python","LinearCollapse"
+Component Module="LinearCollapse" Type="ModelExtractor" NetworkRepresentation=2
+model MSub1 MSUB H=1.5 mm Er=4.8 Mur=1 Cond=5.8e7 Hu=3.9e+34 mm T=35 um TanD=0.02 Rough=0 mm DielectricLossModel=1 FreqForEpsrTanD=1.0 GHz LowFreqForTanD=1.0 kHz HighFreqForTanD=1.0 THz RoughnessModel=2 
+MSOBND:Bend2  N__16 N__17 Subst="MSub1" W=w mm 
+MLIN2:TL3  N__12 N__8 Subst="MSub1" W=w mm L=l2 mm Wall1=2.5e+28 mm Wall2=2.5e+28 mm Mod=1 
+MLIN2:TL2  N__6 N__17 Subst="MSub1" W=w mm L=l2 mm Wall1=2.5e+28 mm Wall2=2.5e+28 mm Mod=1 
+MSOBND:Bend3  N__10 N__12 Subst="MSub1" W=w mm 
+MSOBND:Bend1  N__18 N__19 Subst="MSub1" W=w mm 
+MSOBND:Bend4  N__13 N__4 Subst="MSub1" W=w mm 
+MCLIN:CLin1  N__19 N__10 N__4 N__16 Subst="MSub1" W=w mm S=s mm L=l1 mm 
+MLIN2:TL1  N__11 N__18 Subst="MSub1" W=w mm L=l2 mm Wall1=2.5e+28 mm Wall2=2.5e+28 mm Mod=1 
+MLIN2:TL4  N__13 N__0 Subst="MSub1" W=w mm L=l2 mm Wall1=2.5e+28 mm Wall2=2.5e+28 mm Mod=1 
+
+l2=8.83809 opt{ 6 to 10 }
+s=0.343546 opt{ 0.34 to 0.5 }
+w=1.24113 opt{ 1 to 3 }
+l1=13.1255 opt{ 10 to 18 }
+OptimGoal:OptimGoal1 Expr="dB(S11)" SimInstanceName="SP1" Weight=1 \
+SpecLimitLine[1]="OptimGoal1_limit1" 
+SpecLimitLine:"OptimGoal1_limit1" Type="Inside" Min=-21 Max=-19.8 Weight=1 
+OptimGoal:OptimGoal2 Expr="dB(S12)" SimInstanceName="SP1" Weight=1 \
+SpecLimitLine[1]="OptimGoal2_limit1" 
+SpecLimitLine:"OptimGoal2_limit1" Type="Inside" Min=-1 Max=-0.3 Weight=1 
+OptimGoal:OptimGoal3 Expr="dB(S13)" SimInstanceName="SP1" Weight=1 \
+SpecLimitLine[1]="OptimGoal3_limit1" 
+SpecLimitLine:"OptimGoal3_limit1" Type="Inside" Min=-9.4 Max=-9.35 Weight=1 
+OptimGoal:OptimGoal4 Expr="dB(S14)" SimInstanceName="SP1" Weight=1 \
+SpecLimitLine[1]="OptimGoal4_limit1" 
+SpecLimitLine:"OptimGoal4_limit1" Type="LessThan" Max=-20 Weight=1 
+
+Optim:"Optim1" OptimType="random" ErrorForm="L2" MaxIters=3000 P=2 DesiredError=0.0 StatusLevel=4 FinalAnalysis="None" NormalizeGoals=yes SetBestValues=yes SaveSolns=yes SaveGoals=yes SaveOptimVars=no UpdateDataset=yes SaveNominal=no SaveAllIterations=no UseAllOptVars=yes UseAllGoals=yes SaveCurrentEF=no InitialTempControlMode=0 NumShootsPerIter=20 EnableCockpit=yes NormalizeError=yes SaveAllTrials=no UseAdvTermCriteria=no CostRelativeTol=1.0e-8 LimitOfContSmallImprovement=5 
+

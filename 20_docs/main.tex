@@ -6,37 +6,80 @@
 % =========================
 % Cấu hình thông tin
 % =========================
-\NameUpperUniname{Vietnam National University Ho Chi Minh City}
-\NameUniname{Ho Chi Minh City University of Technology}
-\NameDeptname{Department of Telecommunications Engineering}
-\NamePathlogo{./my-chapters/my-images/01_logobachkhoatoi.png}
-\NameSubject{Microwave Engineering}
-\NameGroup{04}
-\NameClass{L01}
-\NameLesson[\Large]{BIGPROJECT REPORT}
-\NameProject[\Huge]{Design of 2.4 GHz BLE Transmitter \\ with Wake-Up Receiver (WuRx)}
-\NameTitle[\Large]{Project 4: Sensor node BLE and Directional coupler}
-\NameAdvisor{Dr. NGUYEN Van Hieu}
-\NamePlace{Ho Chi Minh}
-\NameTime{../../20..}
-\NamePathBackground[width=\paperwidth,height=\paperheight]{./my-chapters/my-images/bia.jpg} 
+%\NameUpperUniname{Vietnam National University Ho Chi Minh City}
+%\NameUniname{Ho Chi Minh City University of Technology}
+%\NameDeptname{Department of Telecommunications Engineering}
+%\NamePathlogo{./my-chapters/my-images/01_logobachkhoatoi.png}
+%\NameSubject{Microwave Engineering}
+%\NameGroup{04}
+%\NameClass{L01}
+%\NameLesson[\Large]{BIGPROJECT REPORT}
+%\NameProject[\Huge]{Design of 2.4 GHz BLE Transmitter \\ with Wake-Up Receiver (WuRx)}
+%\NameTitle[\Large]{Project 4: Sensor node BLE and Directional coupler}
+%\NameAdvisor{Dr. NGUYEN Van Hieu}
+%\NamePlace{Ho Chi Minh}
+%\NameTime{../../20..}
+%\NamePathBackground[width=\paperwidth,height=\paperheight]{./my-chapters/my-images/bia.jpg} 
 
 \renewcommand{\appendixname}{Phụ lục}
 
 \begin{document}
 	
 	% In cover page
-	\MycoverFinalProject
-	\newpage
-	\pagestyle{fancy}
-	\fancyhf{}
-	\MycountPages{roman}
-	\renewcommand{\arraystretch}{1.5} % tăng khoảng cách dòng (row height)
-	\setlength{\parindent}{1cm}
-	\onehalfspacing
-	\setlength{\parskip}{6pt} 
-	\begin{center}
-		{\normalsize\textbf{Bảng phân công nhiệm vụ}\\[0.5em]}
+%	\MycoverFinalProject
+%	\newpage
+	
+%	\pagestyle{fancy}
+%	\fancyhf{}
+%	\MycountPages{roman}
+%	\renewcommand{\arraystretch}{1.5} % tăng khoảng cách dòng (row height)
+%	\setlength{\parindent}{1cm}
+%	\onehalfspacing
+%	\setlength{\parskip}{6pt} 
+
+	\newgeometry{
+		margin=1cm
+	}
+	\CoverBackground[width=\paperwidth,height=\paperheight]{./my-chapters/my-images/bia.jpg}
+	\thispagestyle{empty}
+	\vspace*{0.005cm}
+	{ \fontsize{20}{18}\selectfont
+		\begin{center}
+			\textbf{Vietnam National University Ho Chi Minh City\\[0.25em]
+			Ho Chi Minh City University of Technology\\[0.5em]}
+		\end{center}
+	}
+	{
+		\fontsize{18}{16}\selectfont
+		\begin{center}
+			\textbf{Department of Telecommunications Engineering \\[0.5em] }
+			\textbf{---o0o---}
+		\end{center}
+	}
+	
+	\vspace{0.1cm}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[width=.2\linewidth]{./my-chapters/my-images/01_logobachkhoasang.png}
+	\end{figure}
+	
+	\vspace{0.2cm}
+	
+	\hspace{0.0\linewidth}{%
+		\fontsize{14}{16}\selectfont
+		\begin{tabular}{@{}l@{\quad}l@{}}
+			SUPERVISOR : & Dr.NGUYEN Van Hieu \\[0.25em]
+			SUBJECT : & Microwave Engineering \\[0.25em]
+			PROJECT : & Project 4: Sensor node BL and Directional coupler \\ [0.25em]
+			CLASS	: & L01 \\ [0.25em]
+			GROUND	: & 04 \\ [0.25em]
+		\end{tabular}
+	}%
+
+	{ \fontsize{13}{12}\selectfont
+		\begin{center}
+		{\normalsize\textbf{Thành viên của nhóm}\\[0.5em]}
 		\begin{tabular}{|>{\centering\arraybackslash}m{1cm}
 				|>{\centering\arraybackslash}m{2.5cm}
 				|>{\centering\arraybackslash}m{4cm}
@@ -45,25 +88,35 @@
 			\hline
 			\textbf{STT} & \textbf{MSSV} & \textbf{Họ và Tên} & \textbf{Nhiệm vụ} & \textbf{Tiến độ} \\
 			\hline
-			1 & 2210214 & Lâm Gia Bảo & Viết chương 2: Lý thuyết về Directional Coupler & 100\% \\
+			1 & 2210214 & Lâm Gia Bảo & Viết chương trình Firmware cho Node & 100\% \\
 			\hline
-			2 & 2210278 & Trần Quốc Bảo & Viết lí thuyết SoC & 100\% \\
+			2 & 2210278 & Trần Quốc Bảo & Thực hiện thi công phần cứng & 100\% \\
 			\hline
-			3 & 2210342 & Hà Xuân Cát & Viết chương 2: kiến trúc SoC & 100\% \\
+			3 & 2210342 & Hà Xuân Cát & Thực hiện kiểm định Layout cho Node & 100\% \\
 			\hline
-			4 & 2210631 & Lý Đoàn Dự & Tổng hợp và format, viết chương 1 & 100\% \\
+			4 & 2210631 & Lý Đoàn Dự & Thiết kế Schematic và Layout cho Node & 100\% \\
 			\hline
-			5 & 2210725 & Võ Phát Đạt & Viết chương 2: Lý thuyết về Directional Coupler & 100\% \\
+			5 & 2210725 & Võ Phát Đạt & Thực hiện thi công phần cứng & 100\% \\
 			\hline
-			6 & 2210779 & Trương Nguyễn Nhật Đông & Nghiên cứu và viết mục lục & 100\% \\
+			6 & 2210779 & Trương Nguyễn Nhật Đông & Thực hiện thi công phần cứng & 100\% \\
 			\hline
-			7 & 2210780 & Nguyễn Đại Đồng & Viết chương 2: Tổng quan về BLE & 100\% \\
+			7 & 2210780 & Nguyễn Đại Đồng & Viết chương trình Firmware cho Node & 100\% \\
 			\hline
-			8 & 2210838 & Đỗ Tiến Giáp & Viết chương 2: Lý thuyết về Directional Coupler & 100\% \\
+			8 & 2210838 & Đỗ Tiến Giáp & Thiết kế Directional Coupler & 100\% \\
 			\hline
 		\end{tabular}
-	\end{center}
+	\end{center}}
 	\newpage
+	\clearpage
+	\ClearShipoutPictureBG
+	\restoregeometry
+	\pagestyle{fancy}
+	\fancyhf{}
+	\MycountPages{roman}
+	\renewcommand{\arraystretch}{1.5} % tăng khoảng cách dòng (row height)
+	\setlength{\parindent}{1cm}
+	\onehalfspacing
+	\setlength{\parskip}{6pt} 
 	\fontsize{13}{14}\selectfont
 	\tableofcontents
 	\listoffigures
@@ -88,6 +141,6 @@
 	\section*{PHỤ LỤC}
 	\addcontentsline{toc}{section}{PHỤ LỤC}
 	\subsection*{Phụ lục A: Mã nguồn}
-	\addcontentsline{toc}{subsection}{Phụ lục B: Mã nguồn}
+	\addcontentsline{toc}{subsection}{Phụ lục A: Mã nguồn}
 	\lstinputlisting[style=StyleCode, language=C, caption={Code thực thi chính của BLE sensor node.}]{./my-chapters/my-refs/Code/code.c}
 \end{document}

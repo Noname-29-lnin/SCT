@@ -1,0 +1,8 @@
+<!DOCTYPE SaveWorkspaceState>
+<SaveWorkspaceState>
+    <Windows>
+        <Schematic cell="Coupled_Line_Directional_Coupler" lib="Directional_Coupler_lib" height="1009" geom="1,0,3,46,51,1536,825,1920,1080" view="schematic" y1="-8" x1="-8" width="1920"/>
+        <Layout cell="Coupled_Line_Directional_Coupler" lib="Directional_Coupler_lib" height="825" geom="1,0,1,38,20,1536,825,1920,1080" view="layout" y1="20" x1="38" width="1536"/>
+    </Windows>
+    <MainWindowTab tab="1"/>
+</SaveWorkspaceState>
